@@ -4,7 +4,7 @@ from discord.ext import commands
 from embeds import lobby_embed
 from api_data import get_lobby_Data, get_total_players, run_api_request, get_all_lobby_ids
 
-bot_token = "input bopt token here"
+bot_token = "input bot token here"
 guild_name = "Dormant Hero's server"
 channel_id = "input channel id"
 
