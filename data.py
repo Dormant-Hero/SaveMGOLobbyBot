@@ -20,7 +20,8 @@ map_choices = {
     18: ["LL", "https://mgo2pc.com/static/18.27179fc1.jpg"],
     19: ["PP", "https://mgo2pc.com/static/19.34274f74.jpg"],
     20: ["QQ", "https://mgo2pc.com/static/20.cff13b73.jpg"],
-    21: ["JJ", "https://mgo2pc.com/static/21.cc66b1a5.jpg"]
+    21: ["JJ", "https://mgo2pc.com/static/21.cc66b1a5.jpg"],
+    22: ["Unknown Map", "https://mgo2pc.com/games"]  # Set this up for when an unknown map appears in the api
 }
 
 # All the possible modes that can be produced from the API the bot connects to
@@ -33,11 +34,13 @@ game_modes = {
     5: "BASE",
     6: "BOMB",
     7: "TSNE",
-    12: "SDM",
     10: "CT",
-    13: "Int",
+    11: "CLAN CT",
+    12: "SDM",
+    13: "INT",
     15: "SCAP",
     16: "RACE",
+    17: "Unknown Game Mode"  # Set this up as a game mode for when the api produces something unknown
 }
 
 # The below is just for my reference
@@ -53,7 +56,7 @@ game_modes = {
 # The below are all the emoji/animal ranks for the lobby listing. You will have to replace these with new listings
 # for this functionality in a new discord server.
 ranks = {
-    0: "<:user:1177784682142761011>",
+    0: "<:user:1177784682142761011>", # Used for no rank or when an unknown rank is obtained from the API
     1: "<:foxhound:942128442344882208>",
     2: "<:fox:942128442344878120>",
     3: "<:doberman:942128441849937951>",

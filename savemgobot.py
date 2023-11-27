@@ -2,12 +2,11 @@ import discord
 import asyncio
 from discord.ext import commands
 from embeds import lobby_embed
-from api_data import get_lobby_Data, get_total_players, run_api_request
+from api_data import get_lobby_Data, get_total_players, run_api_request, get_all_lobby_ids
 
-
-bot_token = "bot token"
-guild_name = "SaveMGO"
-channel_id = "channel_id. Must be integer not string when replaced"
+bot_token = "MTE3NTgxMzI0MDYwNTkxMzE5MA.GxPB2c.6ufDIKYcM_qhBHYfxxMfU2JzdgvsTQ055CEEqE"
+guild_name = "Dormant Hero's server"
+channel_id = 1115165222634799154
 
 def run():
     intents = discord.Intents.default()
@@ -30,8 +29,10 @@ def run():
         print("Code has started")
         lobbies_channel = bot.get_channel(channel_id)
         lobby_data_held = []
+        msg_list = []
+        lobby_ids_contained = []
+        await lobbies_channel.purge(limit=100)
         while True:
-            embed_list = []
             run_api_request()
             all_lobby_data = get_lobby_Data()
             embed_list = lobby_embed()  # embed list simply gets the list from the lobby embed function
@@ -40,15 +41,45 @@ def run():
                 await asyncio.sleep(60)
             else:
                 print("embed does not match")
-                lobby_data_held = all_lobby_data
-                await lobbies_channel.purge(limit=100)
-                for embed in embed_list:
-                    await lobbies_channel.send(embed=embed)
-                await asyncio.sleep(60)
+                if lobby_ids_contained == []:
+                    for embed in embed_list:
+                        msg = await lobbies_channel.send(embed=embed)
+                        msg_list.append(msg)
+                    lobby_data_held = all_lobby_data
+                    lobby_ids_contained = get_all_lobby_ids()
+                    await asyncio.sleep(60)
+                elif lobby_ids_contained != []:
+                    api_ids = get_all_lobby_ids()
 
+                    # A check if the id is not in the api id. If not in then gets deleted
+                    count = 0
+                    for id in lobby_ids_contained:
+                        if id not in api_ids:
+                            await msg_list[count].delete()
+                            del msg_list[count]
+                            del lobby_ids_contained[count]
+                        count += 1
 
+                    # A check if the id is still in the api_ids. If so the message just needs editing
+                    count = 0
+                    for id in lobby_ids_contained:
+                        if id in api_ids:
+                            await msg_list[count].edit(embed=embed_list[count])
+                            await asyncio.sleep(2)
+                        count += 1
+
+                    # A check if the api has an id not already contained
+                    count = 0
+                    for id in api_ids:
+                        if id not in lobby_ids_contained:
+                            msg = await lobbies_channel.send(embed=embed_list[count])
+                            msg_list.append(msg)
+                        count += 1
+                    lobby_data_held = all_lobby_data
+                    lobby_ids_contained = get_all_lobby_ids()
+                    await asyncio.sleep(60)
     bot.run(bot_token)
+
 
 if __name__ == "__main__":
     run()
-
