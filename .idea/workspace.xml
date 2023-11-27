@@ -4,13 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2cf923f7-a85c-42fa-8a77-8c9292b85d9c" name="Changes" comment="Segregated the code for easier reading. Found a bug so added some logging and code apologises when this rare event occurs for now.">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api_data.py" beforeDir="false" afterPath="$PROJECT_DIR$/api_data.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data.py" beforeDir="false" afterPath="$PROJECT_DIR$/data.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/embeds.py" beforeDir="false" afterPath="$PROJECT_DIR$/embeds.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/savemgobot.py" beforeDir="false" afterPath="$PROJECT_DIR$/savemgobot.py" afterDir="false" />
-    </list>
+    <list default="true" id="2cf923f7-a85c-42fa-8a77-8c9292b85d9c" name="Changes" comment="Segregated the code for easier reading. Found a bug so added some logging and code apologises when this rare event occurs for now." />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -64,9 +58,10 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "master",
     "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "C:/Users/marko/PycharmProjects/SaveMGOBot",
+    "last_opened_file_path": "C:/Users/marko/PycharmProjects/savemgobot2",
     "settings.editor.selected.configurable": "project.propVCSSupport.DirectoryMappings"
   }
 }]]></component>
