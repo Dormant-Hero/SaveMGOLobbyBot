@@ -14,7 +14,7 @@ There are 2 ways to setup my bot. You can either run it on my server (may change
 Copy the .py files and run the bot in your chosen code editor or server host as you would with any other bot. As far as I am aware message intentions are all that is required but the official bot I have has message, server member, and presence enabled. 
 The only thing you are going to need to set this up is your bot token. Please see the image below: 
 
-![img.png](img.png)
+![img](https://github.com/Dormant-Hero/SaveMGOLobbyBot/assets/79374258/65580f79-3a6b-4112-928c-0f047686558b)
 
 
 ## Using my server for the bot
