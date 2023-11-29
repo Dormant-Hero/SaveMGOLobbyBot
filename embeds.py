@@ -99,25 +99,25 @@ def lobby_embed(all_lobby_data):
             # Splits the player listing in half so the embed takes up less room
             # All the other appends below are just adding player information to variables to be used in the embed later
             if count <= lobby_player_limit / 2:
-                player_info += f"\n{player_rank_emoji}{' '}{player_level}[{player_name}]({player_link})"
+                player_info += f"\n{player_rank_emoji}{' '}``{player_level}``{' '}[{player_name}]({player_link})"
             else:
-                player_info2 += f"\n{player_rank_emoji}{' '}{player_level}{' '}[{player_name}]({player_link})"
+                player_info2 += f"\n{player_rank_emoji}{' '}``{player_level}``{' '}[{player_name}]({player_link})"
             if team == -2:
-                spectators += f"\n{player_rank_emoji}{' '}{player_level}{' '}[{player_name}]({player_link})"
+                spectators += f"\n{player_rank_emoji}{' '}``{player_level}``{' '}[{player_name}]({player_link})"
             elif team == -1:
                 player_team_negative_1 += f"\n{player_rank_emoji}{' '}``{player_level}``{' '}[{player_name}]({player_link})"
                 logging.debug(f"Player Team Negative 1 is unknown and I did not expect this to ever happen.")
                 logging.info(f"Player team -1 happened in {game_mode} for a game named{lobby_name}\n{player_team_negative_1}")
             elif team == 0:
-                red_team += f"\n{player_rank_emoji}{' '}{player_level}{' '}[{player_name}]({player_link})"
+                red_team += f"\n{player_rank_emoji}{' '}``{player_level}``{' '}[{player_name}]({player_link})"
             elif team == 1:
-                blue_team += f"\n{player_rank_emoji}{' '}{player_level}{' '}[{player_name}]({player_link})"
+                blue_team += f"\n{player_rank_emoji}{' '}``{player_level}``{' '}[{player_name}]({player_link})"
             elif team == 2:
-                sneaking_team += f"\n{player_rank_emoji}{' '}{player_level}{' '}[{player_name}]({player_link})"
+                sneaking_team += f"\n{player_rank_emoji}{' '}``{player_level}``{' '}[{player_name}]({player_link})"
             elif team == int(-32) and count <= lobby_player_limit / 2:
-                assigning_team_1 += f"\n{player_rank_emoji}{' '}{player_level}{' '}[{player_name}]({player_link})"
+                assigning_team_1 += f"\n{player_rank_emoji}{' '}``{player_level}``{' '}[{player_name}]({player_link})"
             else:
-                assigning_team_2 += f"\n{player_rank_emoji}{' '}{player_level}{' '}[{player_name}]({player_link})"
+                assigning_team_2 += f"\n{player_rank_emoji}{' '}``{player_level}``{' '}[{player_name}]({player_link})"
 
         if len(spectators) >= 1024:
             logging.debug(f"The spectators length is over 1024. The length is{len(spectators)}")
