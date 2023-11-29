@@ -4,13 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2cf923f7-a85c-42fa-8a77-8c9292b85d9c" name="Changes" comment="Removed images">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api_data.py" beforeDir="false" afterPath="$PROJECT_DIR$/api_data.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data.py" beforeDir="false" afterPath="$PROJECT_DIR$/data.py" afterDir="false" />
+    <list default="true" id="2cf923f7-a85c-42fa-8a77-8c9292b85d9c" name="Changes" comment="Improved the code considerably and its logic. &#10;&#10;Now included level information of each player.">
       <change beforePath="$PROJECT_DIR$/embeds.py" beforeDir="false" afterPath="$PROJECT_DIR$/embeds.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/savemgobot.py" beforeDir="false" afterPath="$PROJECT_DIR$/savemgobot.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,17 +62,17 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;f752a6f7&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/marko/PycharmProjects/savemgobot2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;editor.preferences.tabs&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "b1c3691f",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "C:/Users/marko/PycharmProjects/savemgobot2",
+    "settings.editor.selected.configurable": "editor.preferences.tabs"
   }
-}</component>
+}]]></component>
   <component name="RunManager">
     <configuration name="savemgobot" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="savemgobot2" />
@@ -190,7 +185,15 @@
       <option name="project" value="LOCAL" />
       <updated>1701194743026</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Improved the code considerably and its logic. &#10;&#10;Now included level information of each player.">
+      <option name="closed" value="true" />
+      <created>1701291128036</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1701291128036</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -224,6 +227,7 @@
     <MESSAGE value="This bot can now be used in multiple guilds using my server or hosted from your own server as per github instructions." />
     <MESSAGE value="Bot now edits messages rather than deleting everything.&#10;&#10;Made it so that all errors I can think of that could occur have logging. Made the code more adaptable to the API." />
     <MESSAGE value="Removed images" />
-    <option name="LAST_COMMIT_MESSAGE" value="Removed images" />
+    <MESSAGE value="Improved the code considerably and its logic. &#10;&#10;Now included level information of each player." />
+    <option name="LAST_COMMIT_MESSAGE" value="Improved the code considerably and its logic. &#10;&#10;Now included level information of each player." />
   </component>
 </project>
