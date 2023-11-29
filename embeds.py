@@ -1,13 +1,11 @@
 from data import map_choices, game_modes, ranks
 import re
 import discord
-from api_data import get_lobby_Data
 import logging
 
 
-def lobby_embed():
-    embed = []
-    all_lobby_data = get_lobby_Data()
+def lobby_embed(all_lobby_data):
+    id_embeds = {}
     # A for loop that splits
     for lobby in all_lobby_data:
         all_player_data = lobby["players"]  # All player data from this lobby
@@ -40,6 +38,52 @@ def lobby_embed():
         assigning_team_1 = ""
         assigning_team_2 = ""
         for data in all_player_data:
+            player_exp = data["exp"]
+            if player_exp >= 4075:
+                player_level = 22
+            elif player_exp >= 3625:
+                player_level = 21
+            elif player_exp >= 3275:
+                player_level = 20
+            elif player_exp >= 2975:
+                player_level = 19
+            elif player_exp >= 2725:
+                player_level = 18
+            elif player_exp >= 2525:
+                player_level = 17
+            elif player_exp >= 2350:
+                player_level = 16
+            elif player_exp >= 2175:
+                player_level = 15
+            elif player_exp >= 2000:
+                player_level = 14
+            elif player_exp >= 1850:
+                player_level = 13
+            elif player_exp >= 1700:
+                player_level = 12
+            elif player_exp >= 1550:
+                player_level = 10
+            elif player_exp >= 1250:
+                player_level = 9
+            elif player_exp >= 1100:
+                player_level = 8
+            elif player_exp >= 950:
+                player_level = 7
+            elif player_exp >= 800:
+                player_level = 6
+            elif player_exp >= 650:
+                player_level = 5
+            elif player_exp >= 500:
+                player_level = 4
+            elif player_exp >= 375:
+                player_level = 3
+            elif player_exp >= 250:
+                player_level = 2
+            elif player_exp >= 125:
+                player_level = 1
+            elif player_exp >= 0:
+                player_level = 0
+
             player_name = re.sub("-", "—", data[
                 "name"])  # formats the player name to not have a normal dash as this breaks the code
             player_link = f"https://mgo2pc.com/profile/{re.sub(' ', '%20', data['name'])}"  # Accounts for HTML URL encoding required
@@ -49,29 +93,31 @@ def lobby_embed():
                 rank_no = 0
             player_rank_emoji = ranks[rank_no]
             team = data["team"]
+            if len(player_name) > 10:
+                player_name = player_name[:10] + "..."
             count += 1
             # Splits the player listing in half so the embed takes up less room
             # All the other appends below are just adding player information to variables to be used in the embed later
             if count <= lobby_player_limit / 2:
-                player_info += f"\n[ {player_rank_emoji}{' '}{player_name}]({player_link})"
+                player_info += f"\n{player_rank_emoji}{' '}{player_level}[{player_name}]({player_link})"
             else:
-                player_info2 += f"\n[ {player_rank_emoji}{' '}{player_name}]({player_link})"
+                player_info2 += f"\n{player_rank_emoji}{' '}{player_level}{' '}[{player_name}]({player_link})"
             if team == -2:
-                spectators += f"\n[ {player_rank_emoji}{' '}{player_name}]({player_link})"
+                spectators += f"\n{player_rank_emoji}{' '}{player_level}{' '}[{player_name}]({player_link})"
             elif team == -1:
-                player_team_negative_1 += f"\n[ {player_rank_emoji}{' '}{player_name}]({player_link})"
+                player_team_negative_1 += f"\n{player_rank_emoji}{' '}``{player_level}``{' '}[{player_name}]({player_link})"
                 logging.debug(f"Player Team Negative 1 is unknown and I did not expect this to ever happen.")
                 logging.info(f"Player team -1 happened in {game_mode} for a game named{lobby_name}\n{player_team_negative_1}")
             elif team == 0:
-                red_team += f"\n[ {player_rank_emoji}{' '}{player_name}]({player_link})"
+                red_team += f"\n{player_rank_emoji}{' '}{player_level}{' '}[{player_name}]({player_link})"
             elif team == 1:
-                blue_team += f"\n[ {player_rank_emoji}{' '}{player_name}]({player_link})"
+                blue_team += f"\n{player_rank_emoji}{' '}{player_level}{' '}[{player_name}]({player_link})"
             elif team == 2:
-                sneaking_team += f"\n[ {player_rank_emoji}{' '}{player_name}]({player_link})"
+                sneaking_team += f"\n{player_rank_emoji}{' '}{player_level}{' '}[{player_name}]({player_link})"
             elif team == int(-32) and count <= lobby_player_limit / 2:
-                assigning_team_1 += f"\n[{player_rank_emoji}{' '}{player_name}]({player_link})"
+                assigning_team_1 += f"\n{player_rank_emoji}{' '}{player_level}{' '}[{player_name}]({player_link})"
             else:
-                assigning_team_2 += f"\n[{player_rank_emoji}{' '}{player_name}]({player_link})"
+                assigning_team_2 += f"\n{player_rank_emoji}{' '}{player_level}{' '}[{player_name}]({player_link})"
 
         if len(spectators) >= 1024:
             logging.debug(f"The spectators length is over 1024. The length is{len(spectators)}")
@@ -81,7 +127,7 @@ def lobby_embed():
                 player_name = re.sub("-", "—", data[
                     "name"])  # formats the player name to not have a normal dash as this breaks the code
                 player_rank_emoji = ranks[data["rank"]]
-                spectators += f"\n[ {player_rank_emoji}{' '}{player_name}]"
+                spectators += f"\n {player_rank_emoji}{' '}``{player_level}``{' '}[{player_name}]({player_link})"
             if len(spectators) >= 1024:
                 logging.debug(f"The spectators length is over 1024 even with links removed. The length is{len(spectators)}")
                 logging.info(f"Spectator player info below\n{spectators}")
@@ -118,7 +164,7 @@ def lobby_embed():
 
         # below embed is if DM, SDM, INTERVAL, or SCAP is selected
         if game_mode_no in [0, 12, 13, 15]:
-            embed.append(discord.Embed(title=f":flag_{region.lower()}: {lobby_name}",
+            id_embeds[lobby_id] = (discord.Embed(title=f":flag_{region.lower()}: {lobby_name}",
                                        url=f"https://mgo2pc.com/game/{lobby_id}",
                                        description="",
                                        colour=0x2f3136)
@@ -132,7 +178,7 @@ def lobby_embed():
 
         # below embed checks if team -1, sneaking_team, and assigning team has no data
         elif player_team_negative_1 == "" and sneaking_team == "" and assigning_team_1 == "" and assigning_team_2 == "":
-            embed.append(discord.Embed(title=f":flag_{region.lower()}: {lobby_name}",
+            id_embeds[lobby_id] = (discord.Embed(title=f":flag_{region.lower()}: {lobby_name}",
                                        url=f"https://mgo2pc.com/game/{lobby_id}",
                                        description="",
                                        colour=0x2f3136)
@@ -147,7 +193,7 @@ def lobby_embed():
 
         # if assigning team has a value then the below embed is produced
         elif assigning_team_1 != "":
-            embed.append(discord.Embed(title=f":flag_{region.lower()}: {lobby_name}",
+            id_embeds[lobby_id] = (discord.Embed(title=f":flag_{region.lower()}: {lobby_name}",
                                        url=f"https://mgo2pc.com/game/{lobby_id}",
                                        description="",
                                        colour=0x2f3136)
@@ -165,7 +211,7 @@ def lobby_embed():
 
 
         elif game_mode_no == 4:
-            embed.append(discord.Embed(title=f":flag_{region.lower()}: {lobby_name}",
+            id_embeds[lobby_id] = (discord.Embed(title=f":flag_{region.lower()}: {lobby_name}",
                                        url=f"https://mgo2pc.com/game/{lobby_id}",
                                        description="",
                                        colour=0x2f3136)
@@ -180,7 +226,7 @@ def lobby_embed():
                          .set_image(url=map_thumbnail))
 
         else:
-            embed.append(discord.Embed(title=f"{invisible_space}:flag_{region.lower()}: {lobby_name}",
+            id_embeds[lobby_id] =(discord.Embed(title=f"{invisible_space}:flag_{region.lower()}: {lobby_name}",
                                        url=f"https://mgo2pc.com/game/{lobby_id}",
                                        description="",
                                        colour=0x2f3136)
@@ -194,4 +240,4 @@ def lobby_embed():
                          .add_field(name=f"Spectators", value=f"{spectators}")
                          .set_image(url=map_thumbnail))
 
-    return embed
+    return id_embeds
