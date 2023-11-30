@@ -4,8 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2cf923f7-a85c-42fa-8a77-8c9292b85d9c" name="Changes" comment="Improved the code considerably and its logic. &#10;&#10;Now included level information of each player.">
-      <change beforePath="$PROJECT_DIR$/embeds.py" beforeDir="false" afterPath="$PROJECT_DIR$/embeds.py" afterDir="false" />
+    <list default="true" id="2cf923f7-a85c-42fa-8a77-8c9292b85d9c" name="Changes" comment="Forgot to some minor formatting changes">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/guild_data.json" beforeDir="false" afterPath="$PROJECT_DIR$/guild_data.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/savemgobot.py" beforeDir="false" afterPath="$PROJECT_DIR$/savemgobot.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,10 +69,10 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "b1c3691f",
+    "git-widget-placeholder": "bdd8e292",
     "ignore.virus.scanning.warn.message": "true",
     "last_opened_file_path": "C:/Users/marko/PycharmProjects/savemgobot2",
-    "settings.editor.selected.configurable": "editor.preferences.tabs"
+    "settings.editor.selected.configurable": "preferences.editor"
   }
 }]]></component>
   <component name="RunManager">
@@ -193,7 +195,15 @@
       <option name="project" value="LOCAL" />
       <updated>1701291128036</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Forgot to some minor formatting changes">
+      <option name="closed" value="true" />
+      <created>1701291961071</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1701291961071</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -228,6 +238,7 @@
     <MESSAGE value="Bot now edits messages rather than deleting everything.&#10;&#10;Made it so that all errors I can think of that could occur have logging. Made the code more adaptable to the API." />
     <MESSAGE value="Removed images" />
     <MESSAGE value="Improved the code considerably and its logic. &#10;&#10;Now included level information of each player." />
-    <option name="LAST_COMMIT_MESSAGE" value="Improved the code considerably and its logic. &#10;&#10;Now included level information of each player." />
+    <MESSAGE value="Forgot to some minor formatting changes" />
+    <option name="LAST_COMMIT_MESSAGE" value="Forgot to some minor formatting changes" />
   </component>
 </project>
