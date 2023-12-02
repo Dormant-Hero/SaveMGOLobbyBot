@@ -173,7 +173,7 @@ def lobby_embed(all_lobby_data):
                          .add_field(name=f" ", value=f" ", inline=False)
                          .add_field(name=f"**Players({players}/{lobby_player_limit})**", value=f"{player_info}",
                                     inline=True)
-                         .add_field(name=f"{invisible_space}", value=f"{player_info2}", inline=True)
+                         .add_field(name=f" ", value=f"{player_info2}", inline=True)
                          .set_image(url=map_thumbnail))
 
         # below embed checks if team -1, sneaking_team, and assigning team has no data

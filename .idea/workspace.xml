@@ -4,8 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2cf923f7-a85c-42fa-8a77-8c9292b85d9c" name="Changes" comment="Forgot to some minor formatting changes">
+    <list default="true" id="2cf923f7-a85c-42fa-8a77-8c9292b85d9c" name="Changes" comment="Tweaked the code for when the bot starts so that when I make updates they are automatically delivered to everyone and they never have to restart or touch the bot again.&#10;&#10;Tried to make things more use friendly to read.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/embeds.py" beforeDir="false" afterPath="$PROJECT_DIR$/embeds.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/guild_data.json" beforeDir="false" afterPath="$PROJECT_DIR$/guild_data.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/savemgobot.py" beforeDir="false" afterPath="$PROJECT_DIR$/savemgobot.py" afterDir="false" />
     </list>
@@ -64,17 +65,17 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "bdd8e292",
-    "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "C:/Users/marko/PycharmProjects/savemgobot2",
-    "settings.editor.selected.configurable": "preferences.editor"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;a2e06bb0&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/marko/PycharmProjects/savemgobot2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.editor&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration name="savemgobot" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="savemgobot2" />
@@ -203,7 +204,15 @@
       <option name="project" value="LOCAL" />
       <updated>1701291961071</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Tweaked the code for when the bot starts so that when I make updates they are automatically delivered to everyone and they never have to restart or touch the bot again.&#10;&#10;Tried to make things more use friendly to read.">
+      <option name="closed" value="true" />
+      <created>1701379505276</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1701379505276</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -239,6 +248,7 @@
     <MESSAGE value="Removed images" />
     <MESSAGE value="Improved the code considerably and its logic. &#10;&#10;Now included level information of each player." />
     <MESSAGE value="Forgot to some minor formatting changes" />
-    <option name="LAST_COMMIT_MESSAGE" value="Forgot to some minor formatting changes" />
+    <MESSAGE value="Tweaked the code for when the bot starts so that when I make updates they are automatically delivered to everyone and they never have to restart or touch the bot again.&#10;&#10;Tried to make things more use friendly to read." />
+    <option name="LAST_COMMIT_MESSAGE" value="Tweaked the code for when the bot starts so that when I make updates they are automatically delivered to everyone and they never have to restart or touch the bot again.&#10;&#10;Tried to make things more use friendly to read." />
   </component>
 </project>
