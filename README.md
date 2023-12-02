@@ -27,7 +27,7 @@ Simply click this [link](https://discord.com/api/oauth2/authorize?client_id=1175
 
 ## Usage
 
-You can follow this [video guide](https://youtu.be/bWCSD36b4AE) or follow the instructions below in relation to usage.
+You can follow this [video guide](https://youtu.be/ZcpI17OwUG8?si=gAHGAR91-RcBq25a) or follow the instructions below in relation to usage.
 
 Once the bot is on your server create the discord channel you want the lobbies to be sent on (you can give it any name). 
 
@@ -51,17 +51,14 @@ Once done I recommend you check the permissions of the channel and/or just ensur
 ![img_10](https://github.com/Dormant-Hero/SaveMGOLobbyBot/assets/79374258/73820bf2-f820-40be-917c-106c64591379)
 
 Now the permissions are set we just need to copy the channel id into the command /set_channel_id so the bot knows where 
-you would like the lobby embeds posted for your server.
+you would like the lobby embeds posted for your server. That is it. You should never have to use a command on this bot again and it should work perfectly :).
 
 ![img_12](https://github.com/Dormant-Hero/SaveMGOLobbyBot/assets/79374258/efffeaf8-4b3b-4734-963d-8d01e424d428)
 
 ![img_13](https://github.com/Dormant-Hero/SaveMGOLobbyBot/assets/79374258/4022ea8d-0144-4414-bcaf-e970a89ac1e0)
 
-![img_14](https://github.com/Dormant-Hero/SaveMGOLobbyBot/assets/79374258/03b89e0b-a9d0-469c-9365-ba10cac708d5)
+![image](https://github.com/Dormant-Hero/SaveMGOLobbyBot/assets/79374258/5762d3bb-53ff-40ee-9157-db7d6aaa945d)
 
-With our channel assigned simply type !startand you should find some nice lobby embeds being produced 😏.
-
-![img_15](https://github.com/Dormant-Hero/SaveMGOLobbyBot/assets/79374258/c4325ad2-bb87-48bc-b13c-b2ee9c7d5ff6)
 
 
 ### Note if your running this of your own server
