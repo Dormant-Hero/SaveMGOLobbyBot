@@ -1,4 +1,4 @@
-from data import map_choices, game_modes, ranks, password_emoji, dp
+from data import map_choices, game_modes, ranks, password_emoji, dp, host
 import re
 import discord
 import logging
@@ -97,6 +97,7 @@ def lobby_embed(all_lobby_data):
             elif player_exp >= 0:
                 player_level = 0
 
+
             player_name = re.sub("-", "—", data[
                 "name"])  # formats the player name to not have a normal dash as this breaks the code
             player_link = f"https://mgo2pc.com/profile/{re.sub(' ', '%20', data['name'])}"  # Accounts for HTML URL encoding required
@@ -104,7 +105,11 @@ def lobby_embed(all_lobby_data):
             if rank_no not in ranks:
                 logging.debug(f"The rank no is {rank_no}. Had to use 0 as it does not exist")
                 rank_no = 0
-            player_rank_emoji = ranks[rank_no]
+            if data["host"]:
+                player_rank_emoji = host
+            else:
+                player_rank_emoji = ranks[rank_no]
+
             team = data["team"]
             if len(player_name) > 10:
                 player_name = player_name[:10] + "..."

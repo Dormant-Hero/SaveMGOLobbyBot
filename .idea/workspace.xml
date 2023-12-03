@@ -4,8 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2cf923f7-a85c-42fa-8a77-8c9292b85d9c" name="Changes" comment="Tweaked the code for when the bot starts so that when I make updates they are automatically delivered to everyone and they never have to restart or touch the bot again.&#10;&#10;Tried to make things more use friendly to read.">
+    <list default="true" id="2cf923f7-a85c-42fa-8a77-8c9292b85d9c" name="Changes" comment="Added DP emoji and the bot shows if a lobby is password protected (via emoji).">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data.py" beforeDir="false" afterPath="$PROJECT_DIR$/data.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/embeds.py" beforeDir="false" afterPath="$PROJECT_DIR$/embeds.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/guild_data.json" beforeDir="false" afterPath="$PROJECT_DIR$/guild_data.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/savemgobot.py" beforeDir="false" afterPath="$PROJECT_DIR$/savemgobot.py" afterDir="false" />
@@ -70,7 +71,7 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;a2e06bb0&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;d84f5eba&quot;,
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
     &quot;last_opened_file_path&quot;: &quot;C:/Users/marko/PycharmProjects/savemgobot2&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;preferences.editor&quot;
@@ -212,10 +213,75 @@
       <option name="project" value="LOCAL" />
       <updated>1701379505276</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="Tweaked the bot and removed the !start command. Made it so that when you set the channel that is it. You can set it and forget about it even after a server restart. A much needed change:).">
+      <option name="closed" value="true" />
+      <created>1701525138311</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1701525138311</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Added DP emoji and the bot shows if a lobby is password protected (via emoji).">
+      <option name="closed" value="true" />
+      <created>1701565791721</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1701565791721</updated>
+    </task>
+    <task id="LOCAL-00016" summary="Added DP emoji and the bot shows if a lobby is password protected (via emoji).">
+      <option name="closed" value="true" />
+      <created>1701565834885</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1701565834885</updated>
+    </task>
+    <task id="LOCAL-00017" summary="Added DP emoji and the bot shows if a lobby is password protected (via emoji).">
+      <option name="closed" value="true" />
+      <created>1701566139557</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1701566139557</updated>
+    </task>
+    <task id="LOCAL-00018" summary="Added DP emoji and the bot shows if a lobby is password protected (via emoji).">
+      <option name="closed" value="true" />
+      <created>1701566337593</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1701566337593</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
+    <option name="RECENT_FILTERS">
+      <map>
+        <entry key="Branch">
+          <value>
+            <list>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="HEAD" />
+                </option>
+              </RecentGroup>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="master" />
+                </option>
+              </RecentGroup>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="origin/master" />
+                </option>
+              </RecentGroup>
+            </list>
+          </value>
+        </entry>
+      </map>
+    </option>
     <option name="TAB_STATES">
       <map>
         <entry key="MAIN">
@@ -226,7 +292,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="master" />
+                        <option value="HEAD" />
                       </list>
                     </value>
                   </entry>
@@ -249,6 +315,8 @@
     <MESSAGE value="Improved the code considerably and its logic. &#10;&#10;Now included level information of each player." />
     <MESSAGE value="Forgot to some minor formatting changes" />
     <MESSAGE value="Tweaked the code for when the bot starts so that when I make updates they are automatically delivered to everyone and they never have to restart or touch the bot again.&#10;&#10;Tried to make things more use friendly to read." />
-    <option name="LAST_COMMIT_MESSAGE" value="Tweaked the code for when the bot starts so that when I make updates they are automatically delivered to everyone and they never have to restart or touch the bot again.&#10;&#10;Tried to make things more use friendly to read." />
+    <MESSAGE value="Tweaked the bot and removed the !start command. Made it so that when you set the channel that is it. You can set it and forget about it even after a server restart. A much needed change:)." />
+    <MESSAGE value="Added DP emoji and the bot shows if a lobby is password protected (via emoji)." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added DP emoji and the bot shows if a lobby is password protected (via emoji)." />
   </component>
 </project>

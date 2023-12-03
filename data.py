@@ -104,12 +104,14 @@ ranks = {
 }
 
 password_emoji = {
-    "locked": "<:locked:1180559329611485285>",
-    "unlocked": "<:unlocked:1180560763593691256>"
+    "locked": "<:lock:1180872870684012664>",
+    "unlocked": ""
 }
 
 dp = {
     0: "",
-    2: "<:dp:1063213449116668034>",
+    2: "<:dp:1180861589289701466>",
     3: "something unexpected. Take a screenshot and please inform me (Dormant Hero)."
 }
+
+host = "<:host:1180901051545702411>"
