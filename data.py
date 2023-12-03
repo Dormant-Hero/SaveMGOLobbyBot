@@ -102,3 +102,14 @@ ranks = {
     51: "<:dev:1177981901517099048>",
     52: "<:ocelot:1177220081894297680>",
 }
+
+password_emoji = {
+    "locked": "<:locked:1180559329611485285>",
+    "unlocked": "<:unlocked:1180560763593691256>"
+}
+
+dp = {
+    0: "",
+    2: "<:dp:1063213449116668034>",
+    3: "something unexpected. Take a screenshot and please inform me (Dormant Hero)."
+}
