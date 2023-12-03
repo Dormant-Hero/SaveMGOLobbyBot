@@ -6,7 +6,7 @@ from embeds import lobby_embed
 from api_data import get_lobby_Data, get_total_players, run_api_request, get_all_lobby_ids
 import json
 
-bot_token = ""
+bot_token = "Your Bot token"
 
 # Stores guild id's and their respective selected channel id
 def check_json():
