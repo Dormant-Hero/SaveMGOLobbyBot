@@ -14,7 +14,8 @@ There are 2 ways to setup my bot. You can either run it on my server (may change
 Copy the .py files and run the bot in your chosen code editor or server host as you would with any other bot. As far as I am aware message intentions are all that is required but the official bot I have has message, server member, and presence enabled. 
 The only thing you are going to need to set this up is your bot token. Please see the image below: 
 
-![img](https://github.com/Dormant-Hero/SaveMGOLobbyBot/assets/79374258/65580f79-3a6b-4112-928c-0f047686558b)
+![image](https://github.com/Dormant-Hero/SaveMGOLobbyBot/assets/79374258/f203d9a5-3738-4de4-9d46-a5d46e320ef8)
+
 
 
 ## Using my server for the bot
@@ -68,7 +69,8 @@ then host them in your server or others with the bot located inside of them.
 
 **Custom Emojis in the embed**
 
-![image](https://github.com/Dormant-Hero/SaveMGOLobbyBot/assets/79374258/b9be2f28-4be2-41a6-9a26-5b47c04cd217)
+![image](https://github.com/Dormant-Hero/SaveMGOLobbyBot/assets/79374258/3d3150e6-fbf7-479a-8c94-eb0f9f342728)
+
 
 These images below shows you how to receive custom emoji codes for any emoji. Post the emoji from one of the servers your server is in 
 and at a backslash \ in-front of it as per the below:
