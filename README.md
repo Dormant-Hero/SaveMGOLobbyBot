@@ -69,7 +69,7 @@ then host them in your server or others with the bot located inside of them.
 
 **Custom Emojis in the embed**
 
-![image](https://github.com/Dormant-Hero/SaveMGOLobbyBot/assets/79374258/3d3150e6-fbf7-479a-8c94-eb0f9f342728)
+![image](https://github.com/Dormant-Hero/SaveMGOLobbyBot/assets/79374258/01cda0d2-46f9-4523-9dc7-dc78d6f983eb)
 
 
 These images below shows you how to receive custom emoji codes for any emoji. Post the emoji from one of the servers your server is in 
