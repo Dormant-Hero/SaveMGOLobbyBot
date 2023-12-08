@@ -1,8 +1,6 @@
 from data import map_choices, game_modes, ranks, password_emoji, dp, host
 import re
 import discord
-import logging
-
 
 def lobby_embed(all_lobby_data):
     id_embeds = {}
@@ -13,14 +11,15 @@ def lobby_embed(all_lobby_data):
         current_game = lobby["currentGame"]
         map_no = lobby["games"][current_game][1]
         drebin_points = lobby["games"][current_game][2] #drebin points
-        if drebin_points != 2 and drebin_points != 0:
+        if drebin_points != 2 and drebin_points != 0 and drebin_points != 4:
             drebin_points = dp[3]
         elif drebin_points == 2:
             drebin_points = dp[2]
+        elif drebin_points == 4:
+            drebin_points = dp[4]
         else:
             drebin_points = dp[0]
         if map_no not in map_choices:
-            logging.debug(f"The map no is {map_no}. Had to use 22 as it does not exist")
             map_no = 22
         map_name = map_choices[map_no][0]
         map_thumbnail = map_choices[map_no][1]
@@ -32,7 +31,6 @@ def lobby_embed(all_lobby_data):
         else:
             game_lock = unlocked
         if game_mode_no not in game_modes:
-            logging.debug(f"The game mode no is {game_mode_no}. Had to use 17 as it does not exist")
             game_mode_no = 17
         game_mode = game_modes[game_mode_no]
         players = len(all_player_data)  # Players in the lobby
@@ -103,7 +101,6 @@ def lobby_embed(all_lobby_data):
             player_link = f"https://mgo2pc.com/profile/{re.sub(' ', '%20', data['name'])}"  # Accounts for HTML URL encoding required
             rank_no = int(data["rank"])
             if rank_no not in ranks:
-                logging.debug(f"The rank no is {rank_no}. Had to use 0 as it does not exist")
                 rank_no = 0
             if data["host"]:
                 player_rank_emoji = host
@@ -124,8 +121,6 @@ def lobby_embed(all_lobby_data):
                 spectators += f"\n{player_rank_emoji}{' '}``{player_level}``{' '}[{player_name}]({player_link})"
             elif team == -1:
                 player_team_negative_1 += f"\n{player_rank_emoji}{' '}``{player_level}``{' '}[{player_name}]({player_link})"
-                logging.debug(f"Player Team Negative 1 is unknown and I did not expect this to ever happen.")
-                logging.info(f"Player team -1 happened in {game_mode} for a game named{lobby_name}\n{player_team_negative_1}")
             elif team == 0:
                 red_team += f"\n{player_rank_emoji}{' '}``{player_level}``{' '}[{player_name}]({player_link})"
             elif team == 1:
@@ -138,8 +133,6 @@ def lobby_embed(all_lobby_data):
                 assigning_team_2 += f"\n{player_rank_emoji}{' '}``{player_level}``{' '}[{player_name}]({player_link})"
 
         if len(spectators) >= 1024:
-            logging.debug(f"The spectators length is over 1024. The length is{len(spectators)}")
-            logging.info(f"Spectator player info below {spectators}")
             spectators = ""
             for data in all_player_data:
                 player_name = re.sub("-", "—", data[
@@ -147,13 +140,9 @@ def lobby_embed(all_lobby_data):
                 player_rank_emoji = ranks[data["rank"]]
                 spectators += f"\n {player_rank_emoji}{' '}``{player_level}``{' '}[{player_name}]({player_link})"
             if len(spectators) >= 1024:
-                logging.debug(f"The spectators length is over 1024 even with links removed. The length is{len(spectators)}")
-                logging.info(f"Spectator player info below\n{spectators}")
                 spectators = "Investigating this bug"
 
         if len(red_team) >= 1024:
-            logging.debug(f"The red team length is over 1024. The length is{len(red_team)}")
-            logging.info(f"Spectator player info below\n{red_team}")
             red_team = ""
             for data in all_player_data:
                 player_name = re.sub("-", "—", data[
@@ -161,13 +150,9 @@ def lobby_embed(all_lobby_data):
                 player_rank_emoji = ranks[data["rank"]]
                 red_team += f"\n[ {player_rank_emoji}{' '}{player_name}]"
             if len(red_team) >= 1024:
-                logging.debug(f"The red_team length is over 1024 even with links removed. The length is{len(red_team)}")
-                logging.info(f"Spectator player info below {red_team}")
                 red_team = "Investigating this bug"
 
         if len(blue_team) >= 1024:
-            logging.debug(f"The red team length is over 1024. The length is{len(blue_team)}")
-            logging.info(f"Spectator player info below\n{blue_team}")
             blue_team = ""
             for data in all_player_data:
                 player_name = re.sub("-", "—", data[
@@ -175,8 +160,6 @@ def lobby_embed(all_lobby_data):
                 player_rank_emoji = ranks[data["rank"]]
                 blue_team += f"\n[ {player_rank_emoji}{' '}{player_name}]"
             if len(blue_team) >= 1024:
-                logging.debug(f"The red_team length is over 1024 even with links removed. The length is{len(blue_team)}")
-                logging.info(f"Spectator player info below {blue_team}")
                 blue_team = "Investigating this bug"
 
 
@@ -185,7 +168,7 @@ def lobby_embed(all_lobby_data):
             id_embeds[lobby_id] = (discord.Embed(title=f":flag_{region.lower()}: {game_lock} {lobby_name}",
                                        url=f"https://mgo2pc.com/game/{lobby_id}",
                                        description="",
-                                       colour=0x2f3136)
+                                       colour=0xfd3a3a)
                          .add_field(name=f"Map:", value=f"{map_name}", inline=True)
                          .add_field(name=f"Mode:", value=f"{game_mode}{drebin_points}", inline=True)
                          .add_field(name=f" ", value=f" ", inline=False)
@@ -199,7 +182,7 @@ def lobby_embed(all_lobby_data):
             id_embeds[lobby_id] = (discord.Embed(title=f":flag_{region.lower()}: {game_lock} {lobby_name}",
                                        url=f"https://mgo2pc.com/game/{lobby_id}",
                                        description="",
-                                       colour=0x2f3136)
+                                       colour=0xfd3a3a)
                          .add_field(name=f"Map:", value=f"{map_name}", inline=True)
                          .add_field(name=f"Mode:", value=f"{game_mode}{drebin_points}", inline=True)
                          .add_field(name="**Players**", value=f"{players}/{lobby_player_limit}", inline=True)
@@ -214,7 +197,7 @@ def lobby_embed(all_lobby_data):
             id_embeds[lobby_id] = (discord.Embed(title=f":flag_{region.lower()}: {game_lock} {lobby_name}",
                                        url=f"https://mgo2pc.com/game/{lobby_id}",
                                        description="",
-                                       colour=0x2f3136)
+                                       colour=0xfd3a3a)
                          .add_field(name=f"{invisible_space}Map:{invisible_space}",
                                     value=f"{invisible_space}{map_name}", inline=True)
                          .add_field(name=f"Mode:", value=f"{game_mode}{drebin_points}", inline=True)
@@ -232,7 +215,7 @@ def lobby_embed(all_lobby_data):
             id_embeds[lobby_id] = (discord.Embed(title=f":flag_{region.lower()}: {game_lock} {lobby_name}",
                                        url=f"https://mgo2pc.com/game/{lobby_id}",
                                        description="",
-                                       colour=0x2f3136)
+                                       colour=0xfd3a3a)
                          .add_field(name=f"Map:", value=f"{map_name}", inline=True)
                          .add_field(name=f"Mode:", value=f"{game_mode}{drebin_points}", inline=True)
                          .add_field(name="**Players**", value=f"{players}/{lobby_player_limit}", inline=True)
@@ -247,7 +230,7 @@ def lobby_embed(all_lobby_data):
             id_embeds[lobby_id] =(discord.Embed(title=f"{invisible_space}:flag_{region.lower()}: {game_lock} {lobby_name}",
                                        url=f"https://mgo2pc.com/game/{lobby_id}",
                                        description="",
-                                       colour=0x2f3136)
+                                       colour=0xfd3a3a)
                          .add_field(name=f"Map:", value=f"{map_name}", inline=True)
                          .add_field(name=f"Mode:", value=f"{game_mode}{drebin_points}", inline=True)
                          .add_field(name=f"**Players**", value=f"{players}/{lobby_player_limit}", inline=True)
