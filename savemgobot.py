@@ -5,8 +5,10 @@ from discord import app_commands
 from embeds import lobby_embed
 from api_data import get_lobby_Data, get_total_players, run_api_request, get_all_lobby_ids
 import json
+import logging
 
-bot_token = "Your Bot token"
+logging.basicConfig(filename="logger.log", encoding="utf-8", level=logging.DEBUG)
+bot_token = "bot_token"
 
 # Stores guild id's and their respective selected channel id
 def check_json():
