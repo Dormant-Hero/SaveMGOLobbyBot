@@ -111,7 +111,43 @@ password_emoji = {
 dp = {
     0: "",
     2: "<:dp:1180861589289701466>",
-    3: "something unexpected. Take a screenshot and please inform me (Dormant Hero)."
+    3: "something unexpected. Take a screenshot and please inform me (Dormant Hero).",
+    4: "<:hsonly:1181375450602287145>"
 }
 
 host = "<:host:1180901051545702411>"
+
+
+hosts = {
+  "*Yuna*": "Please visit TSNE City for the password to this match [here](https://discord.gg/M7dRf3kKvG) to join *Yuna*'s match",
+  "Mr. Smith": "Please visit TSNE City for the password to this match [here](https://discord.gg/M7dRf3kKvG) to join Mr. Smith's match",
+  "Mr.Bogus": "Please visit TSNE City for the password to this match [here](https://discord.gg/M7dRf3kKvG) to join Mr.Bogus' match",
+  "Survival": "This is Dormant Testing",
+  "Paradoxon": "Please visit TSNE City for the password to this match [here](https://discord.gg/M7dRf3kKvG) to join Paradoxon's match",
+  "MÆN ÆT ÆRMS": "Please visit TSNE City for the password to this match [here](https://discord.gg/M7dRf3kKvG) to join MÆN ÆT ÆRMS' match",
+  "worm": "Please visit TSNE City for the password to this match [here](https://discord.gg/M7dRf3kKvG) to join worm's match",
+  "Rambo af": "Please visit TSNE City for the password to this match [here](https://discord.gg/M7dRf3kKvG) to join Rambo af's match",
+  "Weapon's Dealer":"Please visit TSNE City for the password to this match [here](https://discord.gg/M7dRf3kKvG) to join Weapon Dealer's match",
+  "Cipher":"Please visit TSNE City for the password to this match [here](https://discord.gg/M7dRf3kKvG) to join Cipher's match",
+  "Saladino":"Please visit TSNE City for the password to this match [here](https://discord.gg/M7dRf3kKvG) to join Saladino's match",
+  "Cwp":"Please visit TSNE City for the password to this match [here](https://discord.gg/M7dRf3kKvG) to join CWP's match",
+  "pyron":"Please visit TSNE City for the password to this match [here](https://discord.gg/M7dRf3kKvG) to join Pyron's match",
+  "Verinob":"Please visit TSNE City for the password to this match [here](https://discord.gg/M7dRf3kKvG) to join Verinob's match",
+  "Saltwater":"Please visit TSNE City for the password to this match [here](https://discord.gg/M7dRf3kKvG) to join Saltwater's match",
+  "Darkcloud":"Please visit TSNE City for the password to this match [here](https://discord.gg/M7dRf3kKvG) to join Darkcloud's match",
+  "(CoP) Mr.DOX": "Please visit RES City for the password to this match [here](https://discord.gg/EfjamtSFPN) to join (CoP) Mr.DOX's match",
+  "Sir Sadox": "Please visit RES City for the password to this match [here](https://discord.gg/EfjamtSFPN) to join Sir Sadox's match",
+  "Don Sadox": "Please visit RES City for the password to this match [here](https://discord.gg/EfjamtSFPN) to join Don Sadox's match",
+  "Payno": "Please visit RES City for the password to this match [here](https://discord.gg/EfjamtSFPN) to join Don Payno's match",
+  "jaffrez": "Please visit RES City for the password to this match [here](https://discord.gg/EfjamtSFPN) to join Don Jaffrez's match",
+  "Mistyria": "Please visit RES City for the password to this match [here](https://discord.gg/EfjamtSFPN) to join Don Mistyria's match",
+  "<Prodigy>": "Please visit RES City for the password to this match [here](https://discord.gg/EfjamtSFPN) to join <Prodigy>'s match",
+  "payno": "Please visit RES City for the password to this match [here](https://discord.gg/EfjamtSFPN) to join payno's match",
+  "Explicit": "Please visit RES City for the password to this match [here](https://discord.gg/EfjamtSFPN) to join payno's match",
+}
+
+lobbies = {
+    5: "Contact Dormant if you see this. This should be a normal lobby",
+    15: " <:nohs2:1183914594255777802>",
+    20: "Contact Dormant if you see this."
+}

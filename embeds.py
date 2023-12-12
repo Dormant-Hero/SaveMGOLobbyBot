@@ -1,16 +1,20 @@
-from data import map_choices, game_modes, ranks, password_emoji, dp, host
+from data import map_choices, game_modes, ranks, password_emoji, dp, host, hosts, lobbies
 import re
 import discord
+
 
 def lobby_embed(all_lobby_data):
     id_embeds = {}
     # A for loop that splits
+
     for lobby in all_lobby_data:
+        locked_host_comment = ""
         all_player_data = lobby["players"]  # All player data from this lobby
-        lobby_name = lobby["name"]  #
+        lobby_name = lobby["name"]
         current_game = lobby["currentGame"]
         map_no = lobby["games"][current_game][1]
-        drebin_points = lobby["games"][current_game][2] #drebin points
+        drebin_points = lobby["games"][current_game][2]  # drebin points
+        lobby_hs_only = ""
         if drebin_points != 2 and drebin_points != 0 and drebin_points != 4:
             drebin_points = dp[3]
         elif drebin_points == 2:
@@ -21,6 +25,9 @@ def lobby_embed(all_lobby_data):
             drebin_points = dp[0]
         if map_no not in map_choices:
             map_no = 22
+        print(f"test {lobby['lobbyId']}")
+        if lobby["lobbyId"] == 15:
+            lobby_hs_only = lobbies[15]
         map_name = map_choices[map_no][0]
         map_thumbnail = map_choices[map_no][1]
         game_mode_no = lobby["games"][current_game][0]
@@ -37,6 +44,7 @@ def lobby_embed(all_lobby_data):
         lobby_player_limit = lobby["maxPlayers"]
         region = lobby["location"]
         lobby_id = lobby["id"]
+        lobby_description = lobby["comment"].replace("\n", " ")
         invisible_space = f"<:invisible:1177474192782929970>{' '}"  # Note special invisible characters used for spacing as normal spaces do not work.
         player_info = ""  # Used for game modes without teams to split the teams into 2 so the embed does not take up too much space.
         player_info2 = ""  # Used for game modes without teams to split the teams into 2 so the embed does not take up too much space.
@@ -95,15 +103,22 @@ def lobby_embed(all_lobby_data):
             elif player_exp >= 0:
                 player_level = 0
 
-
             player_name = re.sub("-", "—", data[
                 "name"])  # formats the player name to not have a normal dash as this breaks the code
             player_link = f"https://mgo2pc.com/profile/{re.sub(' ', '%20', data['name'])}"  # Accounts for HTML URL encoding required
             rank_no = int(data["rank"])
+
             if rank_no not in ranks:
                 rank_no = 0
             if data["host"]:
                 player_rank_emoji = host
+                for host_name, host_comment in hosts.items():
+                    if str(data["name"]) == host_name:
+                        print("this happened")
+                        locked_host_comment = hosts[str(data["name"])]
+                        print(str(data["name"]))
+                    elif locked_host_comment == "":
+                        locked_host_comment = "This host is not on our database. Contact us if you have the information and we will try to add them to the bot."
             else:
                 player_rank_emoji = ranks[rank_no]
 
@@ -162,83 +177,153 @@ def lobby_embed(all_lobby_data):
             if len(blue_team) >= 1024:
                 blue_team = "Investigating this bug"
 
-
         # below embed is if DM, SDM, INTERVAL, or SCAP is selected
-        if game_mode_no in [0, 12, 13, 15]:
+        if game_mode_no in [0, 12, 13, 15] and lobby["locked"]:
             id_embeds[lobby_id] = (discord.Embed(title=f":flag_{region.lower()}: {game_lock} {lobby_name}",
-                                       url=f"https://mgo2pc.com/game/{lobby_id}",
-                                       description="",
-                                       colour=0xfd3a3a)
-                         .add_field(name=f"Map:", value=f"{map_name}", inline=True)
-                         .add_field(name=f"Mode:", value=f"{game_mode}{drebin_points}", inline=True)
-                         .add_field(name=f" ", value=f" ", inline=False)
-                         .add_field(name=f"**Players({players}/{lobby_player_limit})**", value=f"{player_info}",
-                                    inline=True)
-                         .add_field(name=f" ", value=f"{player_info2}", inline=True)
-                         .set_image(url=map_thumbnail))
+                                                 url=f"https://mgo2pc.com/game/{lobby_id}",
+                                                 description="",
+                                                 colour=0xfd3a3a)
+                                   .add_field(name=f"Map:", value=f"{map_name}", inline=True)
+                                   .add_field(name=f"Mode:", value=f"{game_mode}{drebin_points}{lobby_hs_only}", inline=True)
+                                   .add_field(name=f"**Description:**", value=f"{lobby_description}", inline=False)
+                                   .add_field(name=f"**Players({players}/{lobby_player_limit})**",
+                                              value=f"{player_info}",
+                                              inline=True)
+                                   .add_field(name=f" ", value=f"{player_info2}", inline=True)
+                                   .add_field(name=f"Discord Contact:", value=f"{locked_host_comment}", inline=False)
+                                   .set_image(url=map_thumbnail))
+
+        elif game_mode_no in [0, 12, 13, 15]:
+            id_embeds[lobby_id] = (discord.Embed(title=f":flag_{region.lower()}: {game_lock} {lobby_name}",
+                                                 url=f"https://mgo2pc.com/game/{lobby_id}",
+                                                 description=f"",
+                                                 colour=0xfd3a3a)
+                                   .add_field(name=f"Map:", value=f"{map_name}", inline=True)
+                                   .add_field(name=f"Mode:", value=f"{game_mode}{drebin_points}{lobby_hs_only}", inline=True)
+                                   .add_field(name=f"**Description:**", value=f"{lobby_description}", inline=False)
+                                   .add_field(name=f"**Players({players}/{lobby_player_limit})**",
+                                              value=f"{player_info}",
+                                              inline=True)
+                                   .add_field(name=f" ", value=f"{player_info2}", inline=True)
+                                   .set_image(url=map_thumbnail))
+
+        # below embed checks if team -1, sneaking_team, and assigning team has no data
+        elif player_team_negative_1 == "" and sneaking_team == "" and assigning_team_1 == "" and assigning_team_2 == "" \
+                and lobby["locked"]:
+            id_embeds[lobby_id] = (discord.Embed(title=f":flag_{region.lower()}: {game_lock} {lobby_name}",
+                                                 url=f"https://mgo2pc.com/game/{lobby_id}",
+                                                 description=f"",
+                                                 colour=0xfd3a3a)
+                                   .add_field(name=f"Map:", value=f"{map_name}", inline=True)
+                                   .add_field(name=f"Mode:", value=f"{game_mode}{drebin_points}{lobby_hs_only}", inline=True)
+                                   .add_field(name="**Players**", value=f"{players}/{lobby_player_limit}", inline=True)
+                                   .add_field(name=f"**Description:**", value=f"{lobby_description}", inline=False)
+                                   .add_field(name=f"Blue Team", value=f"{blue_team}", inline=True)
+                                   .add_field(name=f"Red Team", value=f"{red_team}", inline=True)
+                                   .add_field(name=f"Spectators", value=f"{spectators}")
+                                   .add_field(name=f"Discord Contact:", value=f"{locked_host_comment}", inline=False)
+                                   .set_image(url=map_thumbnail))
 
         # below embed checks if team -1, sneaking_team, and assigning team has no data
         elif player_team_negative_1 == "" and sneaking_team == "" and assigning_team_1 == "" and assigning_team_2 == "":
             id_embeds[lobby_id] = (discord.Embed(title=f":flag_{region.lower()}: {game_lock} {lobby_name}",
-                                       url=f"https://mgo2pc.com/game/{lobby_id}",
-                                       description="",
-                                       colour=0xfd3a3a)
-                         .add_field(name=f"Map:", value=f"{map_name}", inline=True)
-                         .add_field(name=f"Mode:", value=f"{game_mode}{drebin_points}", inline=True)
-                         .add_field(name="**Players**", value=f"{players}/{lobby_player_limit}", inline=True)
-                         .add_field(name=f" ", value=f" ", inline=False)
-                         .add_field(name=f"Blue Team", value=f"{blue_team}", inline=True)
-                         .add_field(name=f"Red Team", value=f"{red_team}", inline=True)
-                         .add_field(name=f"Spectators", value=f"{spectators}")
-                         .set_image(url=map_thumbnail))
+                                                 url=f"https://mgo2pc.com/game/{lobby_id}",
+                                                 description=f"",
+                                                 colour=0xfd3a3a)
+                                   .add_field(name=f"Map:", value=f"{map_name}", inline=True)
+                                   .add_field(name=f"Mode:", value=f"{game_mode}{drebin_points}{lobby_hs_only}", inline=True)
+                                   .add_field(name="**Players**", value=f"{players}/{lobby_player_limit}", inline=True)
+                                   .add_field(name=f"**Description:**", value=f"{lobby_description}", inline=False)
+                                   .add_field(name=f"Blue Team", value=f"{blue_team}", inline=True)
+                                   .add_field(name=f"Red Team", value=f"{red_team}", inline=True)
+                                   .add_field(name=f"Spectators", value=f"{spectators}")
+                                   .set_image(url=map_thumbnail))
+
+        # if assigning team has a value then the below embed is produced
+        elif assigning_team_1 != "" and lobby["locked"]:
+            id_embeds[lobby_id] = (discord.Embed(title=f":flag_{region.lower()}: {game_lock} {lobby_name}",
+                                                 url=f"https://mgo2pc.com/game/{lobby_id}",
+                                                 description=f"",
+                                                 colour=0xfd3a3a)
+                                   .add_field(name=f"{invisible_space}Map:{invisible_space}",
+                                              value=f"{invisible_space}{map_name}", inline=True)
+                                   .add_field(name=f"Mode:", value=f"{game_mode}{drebin_points}{lobby_hs_only}", inline=True)
+                                   .add_field(name="**Description:**", value=f"{lobby_description}", inline=False)
+                                   .add_field(name=f"**Players**", value=f"{players}/{lobby_player_limit}", inline=True)
+                                   .add_field(name=f"\u2001", value=f"\u2001", inline=False)
+                                   .add_field(name=f"Blue Team", value=f"{blue_team}", inline=True)
+                                   .add_field(name=f"Red Team", value=f"{red_team}", inline=True)
+                                   .add_field(name=f"Spectators", value=f"{spectators}")
+                                   .add_field(name=f"Assigning Teams", value=f"{assigning_team_1}")
+                                   .add_field(name=f"Assigning Teams", value=f"{assigning_team_2}", inline=True)
+                                   .add_field(name=f"Discord Contact:", value=f"{locked_host_comment}", inline=False)
+                                   .set_image(url=map_thumbnail))
 
         # if assigning team has a value then the below embed is produced
         elif assigning_team_1 != "":
             id_embeds[lobby_id] = (discord.Embed(title=f":flag_{region.lower()}: {game_lock} {lobby_name}",
-                                       url=f"https://mgo2pc.com/game/{lobby_id}",
-                                       description="",
-                                       colour=0xfd3a3a)
-                         .add_field(name=f"{invisible_space}Map:{invisible_space}",
-                                    value=f"{invisible_space}{map_name}", inline=True)
-                         .add_field(name=f"Mode:", value=f"{game_mode}{drebin_points}", inline=True)
-                         .add_field(name=f"**Players**", value=f"{players}/{lobby_player_limit}", inline=True)
-                         .add_field(name=f"\u2001", value=f"\u2001", inline=False)
-                         .add_field(name=f"Blue Team", value=f"{blue_team}", inline=True)
-                         .add_field(name=f"Red Team", value=f"{red_team}", inline=True)
-                         .add_field(name=f"Spectators", value=f"{spectators}")
-                         .add_field(name=f"Assigning Teams", value=f"{assigning_team_1}")
-                         .add_field(name=f"Assigning Teams", value=f"{assigning_team_2}", inline=True)
-                         .set_image(url=map_thumbnail))
+                                                 url=f"https://mgo2pc.com/game/{lobby_id}",
+                                                 description=f"",
+                                                 colour=0xfd3a3a)
+                                   .add_field(name=f"{invisible_space}Map:{invisible_space}",
+                                              value=f"{invisible_space}{map_name}", inline=True)
+                                   .add_field(name=f"Mode:", value=f"{game_mode}{drebin_points}{lobby_hs_only}", inline=True)
+                                   .add_field(name=f"**Players**", value=f"{players}/{lobby_player_limit}", inline=True)
+                                   .add_field(name=f"**Description:**", value=f"{lobby_description}", inline=False)
+                                   .add_field(name=f"Blue Team", value=f"{blue_team}", inline=True)
+                                   .add_field(name=f"Red Team", value=f"{red_team}", inline=True)
+                                   .add_field(name=f"Spectators", value=f"{spectators}")
+                                   .add_field(name=f"Assigning Teams", value=f"{assigning_team_1}")
+                                   .add_field(name=f"Assigning Teams", value=f"{assigning_team_2}", inline=True)
+                                   .set_image(url=map_thumbnail))
 
+
+
+        elif game_mode_no == 4 and lobby["locked"]:
+            id_embeds[lobby_id] = (discord.Embed(title=f":flag_{region.lower()}: {game_lock} {lobby_name}",
+                                                 url=f"https://mgo2pc.com/game/{lobby_id}",
+                                                 description=f"",
+                                                 colour=0xfd3a3a)
+                                   .add_field(name=f"Map:", value=f"{map_name}", inline=True)
+                                   .add_field(name=f"Mode:", value=f"{game_mode}{drebin_points}{lobby_hs_only}", inline=True)
+                                   .add_field(name="**Players**", value=f"{players}/{lobby_player_limit}", inline=True)
+                                   .add_field(name=f"**Description:**", value=f"{lobby_description}", inline=False)
+                                   .add_field(name=f"Blue Team", value=f"{blue_team}", inline=True)
+                                   .add_field(name=f"Red Team", value=f"{red_team}", inline=True)
+                                   .add_field(name=f"Spectators", value=f"{spectators}")
+                                   .add_field(name=f"Sneaking Team", value=f"{sneaking_team}")
+                                   .add_field(name=f"Discord Contact:", value=f"{locked_host_comment}", inline=False)
+                                   .set_image(url=map_thumbnail))
 
         elif game_mode_no == 4:
             id_embeds[lobby_id] = (discord.Embed(title=f":flag_{region.lower()}: {game_lock} {lobby_name}",
-                                       url=f"https://mgo2pc.com/game/{lobby_id}",
-                                       description="",
-                                       colour=0xfd3a3a)
-                         .add_field(name=f"Map:", value=f"{map_name}", inline=True)
-                         .add_field(name=f"Mode:", value=f"{game_mode}{drebin_points}", inline=True)
-                         .add_field(name="**Players**", value=f"{players}/{lobby_player_limit}", inline=True)
-                         .add_field(name=f"", value=f"", inline=False)
-                         .add_field(name=f"Blue Team", value=f"{blue_team}", inline=True)
-                         .add_field(name=f"Red Team", value=f"{red_team}", inline=True)
-                         .add_field(name=f"Spectators", value=f"{spectators}")
-                         .add_field(name=f"Sneaking Team", value=f"{sneaking_team}")
-                         .set_image(url=map_thumbnail))
+                                                 url=f"https://mgo2pc.com/game/{lobby_id}",
+                                                 description=f"",
+                                                 colour=0xfd3a3a)
+                                   .add_field(name=f"Map:", value=f"{map_name}", inline=True)
+                                   .add_field(name=f"Mode:", value=f"{game_mode}{drebin_points}{lobby_hs_only}", inline=True)
+                                   .add_field(name="**Players**", value=f"{players}/{lobby_player_limit}", inline=True)
+                                   .add_field(name=f"**Description:**", value=f"{lobby_description}", inline=False)
+                                   .add_field(name=f"Blue Team", value=f"{blue_team}", inline=True)
+                                   .add_field(name=f"Red Team", value=f"{red_team}", inline=True)
+                                   .add_field(name=f"Spectators", value=f"{spectators}")
+                                   .add_field(name=f"Sneaking Team", value=f"{sneaking_team}")
+                                   .set_image(url=map_thumbnail))
 
         else:
-            id_embeds[lobby_id] =(discord.Embed(title=f"{invisible_space}:flag_{region.lower()}: {game_lock} {lobby_name}",
-                                       url=f"https://mgo2pc.com/game/{lobby_id}",
-                                       description="",
-                                       colour=0xfd3a3a)
-                         .add_field(name=f"Map:", value=f"{map_name}", inline=True)
-                         .add_field(name=f"Mode:", value=f"{game_mode}{drebin_points}", inline=True)
-                         .add_field(name=f"**Players**", value=f"{players}/{lobby_player_limit}", inline=True)
-                         .add_field(name=f"", value=f"", inline=False)
-                         .add_field(name=f"Your Instructor", value=f"{sneaking_team}", inline=False)
-                         .add_field(name=f"Blue Team", value=f"{blue_team}", inline=True)
-                         .add_field(name=f"Red Team", value=f"{red_team}", inline=True)
-                         .add_field(name=f"Spectators", value=f"{spectators}")
-                         .set_image(url=map_thumbnail))
+            id_embeds[lobby_id] = (
+                discord.Embed(title=f"{invisible_space}:flag_{region.lower()}: {game_lock} {lobby_name}",
+                              url=f"https://mgo2pc.com/game/{lobby_id}",
+                              description=f"",
+                              colour=0xfd3a3a)
+                .add_field(name=f"Map:", value=f"{map_name}", inline=True)
+                .add_field(name=f"Mode:", value=f"{game_mode}{drebin_points}{lobby_hs_only}", inline=True)
+                .add_field(name=f"**Players**", value=f"{players}/{lobby_player_limit}", inline=True)
+                .add_field(name=f"**Description:**", value=f"{lobby_description}", inline=False)
+                .add_field(name=f"Your Instructor", value=f"{sneaking_team}", inline=False)
+                .add_field(name=f"Blue Team", value=f"{blue_team}", inline=True)
+                .add_field(name=f"Red Team", value=f"{red_team}", inline=True)
+                .add_field(name=f"Spectators", value=f"{spectators}")
+                .set_image(url=map_thumbnail))
 
     return id_embeds
