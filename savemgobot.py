@@ -7,8 +7,7 @@ from api_data import get_lobby_Data, get_total_players, run_api_request, get_all
 import json
 import logging
 
-logging.basicConfig(filename="logger.log", encoding="utf-8", level=logging.DEBUG)
-bot_token = "bot_token"
+bot_token = "Your Bot Token"
 
 # Stores guild id's and their respective selected channel id
 def check_json():
@@ -20,7 +19,7 @@ def check_json():
 def run():
     intents = discord.Intents.default()
     intents.message_content = True
-    bot = commands.Bot(command_prefix="!", intents=intents)
+    bot = commands.Bot(command_prefix="*", intents=intents)
 
     # Global dictionary to store channel IDs for each server
     channel_ids = check_json()
