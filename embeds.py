@@ -25,7 +25,6 @@ def lobby_embed(all_lobby_data):
             drebin_points = dp[0]
         if map_no not in map_choices:
             map_no = 22
-        print(f"test {lobby['lobbyId']}")
         if lobby["lobbyId"] == 15:
             lobby_hs_only = lobbies[15]
         map_name = map_choices[map_no][0]

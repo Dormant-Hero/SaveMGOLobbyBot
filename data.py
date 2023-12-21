@@ -144,8 +144,22 @@ hosts = {
   "<Prodigy>": "Please visit RES City for the password to this match [here](https://discord.gg/EfjamtSFPN) to join <Prodigy>'s match",
   "payno": "Please visit RES City for the password to this match [here](https://discord.gg/EfjamtSFPN) to join payno's match",
   "Explicit": "Please visit RES City for the password to this match [here](https://discord.gg/EfjamtSFPN) to join payno's match",
+  ".HaVeN.": "Please message the host @haven7 on discord for the password.",
+  "«Havén»": "Please message the host @haven7 on Discord for the password.",
+  "<Hàvén>": "Please message the host @haven7 on Discord for the password.",
+  "rey pey": "Please message the host @rye7803 on Discord for the password.",
+  "Ms. Boo": "Please message the host @rye7803 on Discord for the password.",
+  "JesseQ": "Please message the host @pwner41 on Discord for the password.",
+  "StevieWonder": "Please message the host @pwner41 on Discord for the password.",
+  "PeeWizzle": "Please message the host @pwner41 on Discord for the password.",
+  "Born2kill": "Please visit TSNE City for the password to this match [here](https://discord.gg/M7dRf3kKvG) to join Born2kill's match",
+  "Hashim.Shelby": "Please visit TSNE City for the password to this match [here](https://discord.gg/M7dRf3kKvG) to join Hashim.Shelby's match",
+  "Haithm-19": "Please contact @haithm89. Note that this is likely locked for his friend.",
+  "Trini": "Please visit TSNE City for the password to this match [here](https://discord.gg/M7dRf3kKvG) to join Trini's match",
+  "- X -": "Please visit TSNE City for the password to this match [here](https://discord.gg/M7dRf3kKvG) to join X's match",
+  "Newton's Laws": "Please visit TSNE City for the password to this match [here](https://discord.gg/M7dRf3kKvG) to join Newton's Laws's match",
+  "GoHawk": "Please visit TSNE City for the password to this match [here](https://discord.gg/M7dRf3kKvG) to join GoHawk's match"
 }
-
 lobbies = {
     5: "Contact Dormant if you see this. This should be a normal lobby",
     15: " <:nohs2:1183914594255777802>",
