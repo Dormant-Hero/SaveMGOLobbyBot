@@ -1,12 +1,25 @@
-from data import map_choices, game_modes, ranks, password_emoji, dp, host, hosts, lobbies
+from data import map_choices, game_modes, ranks, password_emoji, dp, host, lobbies
 import re
 import discord
+from locales import all_locales
+import json
 
 
-def lobby_embed(all_lobby_data):
+def lobby_embed(all_lobby_data, locale):
     id_embeds = {}
-    # A for loop that splits
-
+    print(locale)
+    # below is translating depending on the locale selected by the guild
+    map_title = all_locales[locale]["map"]
+    mode_title = all_locales[locale]["mode"]
+    players_title = all_locales[locale]["players"]
+    description_title = all_locales[locale]["description"]
+    blue_team_title = all_locales[locale]["blue_team"]
+    red_team_title = all_locales[locale]["red_team"]
+    spectators_title = all_locales[locale]["spectators"]
+    sneaking_team_title = all_locales[locale]["sneaking_team"]
+    discord_contact_title = all_locales[locale]["discord_contact"]
+    assigning_teams_title = all_locales[locale]["assigning_teams"]
+    instructor_title = all_locales[locale]["your_instructor"]
     for lobby in all_lobby_data:
         locked_host_comment = ""
         all_player_data = lobby["players"]  # All player data from this lobby
@@ -111,6 +124,8 @@ def lobby_embed(all_lobby_data):
                 rank_no = 0
             if data["host"]:
                 player_rank_emoji = host
+                with open("hosts.json", "r") as f:
+                    hosts = json.load(f)
                 for host_name, host_comment in hosts.items():
                     if str(data["name"]) == host_name:
                         print("this happened")
@@ -182,14 +197,14 @@ def lobby_embed(all_lobby_data):
                                                  url=f"https://mgo2pc.com/game/{lobby_id}",
                                                  description="",
                                                  colour=0xfd3a3a)
-                                   .add_field(name=f"Map:", value=f"{map_name}", inline=True)
-                                   .add_field(name=f"Mode:", value=f"{game_mode}{drebin_points}{lobby_hs_only}", inline=True)
-                                   .add_field(name=f"**Description:**", value=f"{lobby_description}", inline=False)
-                                   .add_field(name=f"**Players({players}/{lobby_player_limit})**",
+                                   .add_field(name=f"{map_title}:", value=f"{map_name}", inline=True)
+                                   .add_field(name=f"{mode_title}:", value=f"{game_mode}{drebin_points}{lobby_hs_only}", inline=True)
+                                   .add_field(name=f"**{description_title}:**", value=f"{lobby_description}", inline=False)
+                                   .add_field(name=f"**{players_title}({players}/{lobby_player_limit})**",
                                               value=f"{player_info}",
                                               inline=True)
                                    .add_field(name=f" ", value=f"{player_info2}", inline=True)
-                                   .add_field(name=f"Discord Contact:", value=f"{locked_host_comment}", inline=False)
+                                   .add_field(name=f"{discord_contact_title}:", value=f"{locked_host_comment}", inline=False)
                                    .set_image(url=map_thumbnail))
 
         elif game_mode_no in [0, 12, 13, 15]:
@@ -197,10 +212,10 @@ def lobby_embed(all_lobby_data):
                                                  url=f"https://mgo2pc.com/game/{lobby_id}",
                                                  description=f"",
                                                  colour=0xfd3a3a)
-                                   .add_field(name=f"Map:", value=f"{map_name}", inline=True)
-                                   .add_field(name=f"Mode:", value=f"{game_mode}{drebin_points}{lobby_hs_only}", inline=True)
-                                   .add_field(name=f"**Description:**", value=f"{lobby_description}", inline=False)
-                                   .add_field(name=f"**Players({players}/{lobby_player_limit})**",
+                                   .add_field(name=f"{map_title}:", value=f"{map_name}", inline=True)
+                                   .add_field(name=f"{mode_title}:", value=f"{game_mode}{drebin_points}{lobby_hs_only}", inline=True)
+                                   .add_field(name=f"**{description_title}:**", value=f"{lobby_description}", inline=False)
+                                   .add_field(name=f"**{players_title}({players}/{lobby_player_limit})**",
                                               value=f"{player_info}",
                                               inline=True)
                                    .add_field(name=f" ", value=f"{player_info2}", inline=True)
@@ -213,14 +228,14 @@ def lobby_embed(all_lobby_data):
                                                  url=f"https://mgo2pc.com/game/{lobby_id}",
                                                  description=f"",
                                                  colour=0xfd3a3a)
-                                   .add_field(name=f"Map:", value=f"{map_name}", inline=True)
-                                   .add_field(name=f"Mode:", value=f"{game_mode}{drebin_points}{lobby_hs_only}", inline=True)
-                                   .add_field(name="**Players**", value=f"{players}/{lobby_player_limit}", inline=True)
-                                   .add_field(name=f"**Description:**", value=f"{lobby_description}", inline=False)
-                                   .add_field(name=f"Blue Team", value=f"{blue_team}", inline=True)
-                                   .add_field(name=f"Red Team", value=f"{red_team}", inline=True)
-                                   .add_field(name=f"Spectators", value=f"{spectators}")
-                                   .add_field(name=f"Discord Contact:", value=f"{locked_host_comment}", inline=False)
+                                   .add_field(name=f"{map_title}:", value=f"{map_name}", inline=True)
+                                   .add_field(name=f"{mode_title}:", value=f"{game_mode}{drebin_points}{lobby_hs_only}", inline=True)
+                                   .add_field(name=f"**{players_title}**", value=f"{players}/{lobby_player_limit}", inline=True)
+                                   .add_field(name=f"**{description_title}:**", value=f"{lobby_description}", inline=False)
+                                   .add_field(name=f"{blue_team_title}", value=f"{blue_team}", inline=True)
+                                   .add_field(name=f"{red_team_title}", value=f"{red_team}", inline=True)
+                                   .add_field(name=f"{spectators_title}", value=f"{spectators}")
+                                   .add_field(name=f"{discord_contact_title}:", value=f"{locked_host_comment}", inline=False)
                                    .set_image(url=map_thumbnail))
 
         # below embed checks if team -1, sneaking_team, and assigning team has no data
@@ -229,13 +244,13 @@ def lobby_embed(all_lobby_data):
                                                  url=f"https://mgo2pc.com/game/{lobby_id}",
                                                  description=f"",
                                                  colour=0xfd3a3a)
-                                   .add_field(name=f"Map:", value=f"{map_name}", inline=True)
-                                   .add_field(name=f"Mode:", value=f"{game_mode}{drebin_points}{lobby_hs_only}", inline=True)
-                                   .add_field(name="**Players**", value=f"{players}/{lobby_player_limit}", inline=True)
-                                   .add_field(name=f"**Description:**", value=f"{lobby_description}", inline=False)
-                                   .add_field(name=f"Blue Team", value=f"{blue_team}", inline=True)
-                                   .add_field(name=f"Red Team", value=f"{red_team}", inline=True)
-                                   .add_field(name=f"Spectators", value=f"{spectators}")
+                                   .add_field(name=f"{map_title}:", value=f"{map_name}", inline=True)
+                                   .add_field(name=f"{mode_title}:", value=f"{game_mode}{drebin_points}{lobby_hs_only}", inline=True)
+                                   .add_field(name=f"**{players_title}**", value=f"{players}/{lobby_player_limit}", inline=True)
+                                   .add_field(name=f"**{description_title}:**", value=f"{lobby_description}", inline=False)
+                                   .add_field(name=f"{blue_team_title}", value=f"{blue_team}", inline=True)
+                                   .add_field(name=f"{red_team_title}", value=f"{red_team}", inline=True)
+                                   .add_field(name=f"{spectators_title}", value=f"{spectators}")
                                    .set_image(url=map_thumbnail))
 
         # if assigning team has a value then the below embed is produced
@@ -246,16 +261,16 @@ def lobby_embed(all_lobby_data):
                                                  colour=0xfd3a3a)
                                    .add_field(name=f"{invisible_space}Map:{invisible_space}",
                                               value=f"{invisible_space}{map_name}", inline=True)
-                                   .add_field(name=f"Mode:", value=f"{game_mode}{drebin_points}{lobby_hs_only}", inline=True)
-                                   .add_field(name="**Description:**", value=f"{lobby_description}", inline=False)
-                                   .add_field(name=f"**Players**", value=f"{players}/{lobby_player_limit}", inline=True)
+                                   .add_field(name=f"{mode_title}:", value=f"{game_mode}{drebin_points}{lobby_hs_only}", inline=True)
+                                   .add_field(name=f"**{description_title}:**", value=f"{lobby_description}", inline=False)
+                                   .add_field(name=f"**{players_title}**", value=f"{players}/{lobby_player_limit}", inline=True)
                                    .add_field(name=f"\u2001", value=f"\u2001", inline=False)
-                                   .add_field(name=f"Blue Team", value=f"{blue_team}", inline=True)
-                                   .add_field(name=f"Red Team", value=f"{red_team}", inline=True)
-                                   .add_field(name=f"Spectators", value=f"{spectators}")
-                                   .add_field(name=f"Assigning Teams", value=f"{assigning_team_1}")
-                                   .add_field(name=f"Assigning Teams", value=f"{assigning_team_2}", inline=True)
-                                   .add_field(name=f"Discord Contact:", value=f"{locked_host_comment}", inline=False)
+                                   .add_field(name=f"{blue_team_title}", value=f"{blue_team}", inline=True)
+                                   .add_field(name=f"{red_team_title}", value=f"{red_team}", inline=True)
+                                   .add_field(name=f"{spectators_title}", value=f"{spectators}")
+                                   .add_field(name=f"{assigning_teams_title}", value=f"{assigning_team_1}")
+                                   .add_field(name=f"{assigning_teams_title}", value=f"{assigning_team_2}", inline=True)
+                                   .add_field(name=f"{discord_contact_title}:", value=f"{locked_host_comment}", inline=False)
                                    .set_image(url=map_thumbnail))
 
         # if assigning team has a value then the below embed is produced
@@ -266,14 +281,14 @@ def lobby_embed(all_lobby_data):
                                                  colour=0xfd3a3a)
                                    .add_field(name=f"{invisible_space}Map:{invisible_space}",
                                               value=f"{invisible_space}{map_name}", inline=True)
-                                   .add_field(name=f"Mode:", value=f"{game_mode}{drebin_points}{lobby_hs_only}", inline=True)
-                                   .add_field(name=f"**Players**", value=f"{players}/{lobby_player_limit}", inline=True)
-                                   .add_field(name=f"**Description:**", value=f"{lobby_description}", inline=False)
-                                   .add_field(name=f"Blue Team", value=f"{blue_team}", inline=True)
-                                   .add_field(name=f"Red Team", value=f"{red_team}", inline=True)
-                                   .add_field(name=f"Spectators", value=f"{spectators}")
-                                   .add_field(name=f"Assigning Teams", value=f"{assigning_team_1}")
-                                   .add_field(name=f"Assigning Teams", value=f"{assigning_team_2}", inline=True)
+                                   .add_field(name=f"{mode_title}:", value=f"{game_mode}{drebin_points}{lobby_hs_only}", inline=True)
+                                   .add_field(name=f"**{players_title}**", value=f"{players}/{lobby_player_limit}", inline=True)
+                                   .add_field(name=f"**{description_title}:**", value=f"{lobby_description}", inline=False)
+                                   .add_field(name=f"{blue_team_title}", value=f"{blue_team}", inline=True)
+                                   .add_field(name=f"{red_team_title}", value=f"{red_team}", inline=True)
+                                   .add_field(name=f"{spectators_title}", value=f"{spectators}")
+                                   .add_field(name=f"{assigning_teams_title}", value=f"{assigning_team_1}")
+                                   .add_field(name=f"{assigning_teams_title}", value=f"{assigning_team_2}", inline=True)
                                    .set_image(url=map_thumbnail))
 
 
@@ -283,15 +298,15 @@ def lobby_embed(all_lobby_data):
                                                  url=f"https://mgo2pc.com/game/{lobby_id}",
                                                  description=f"",
                                                  colour=0xfd3a3a)
-                                   .add_field(name=f"Map:", value=f"{map_name}", inline=True)
-                                   .add_field(name=f"Mode:", value=f"{game_mode}{drebin_points}{lobby_hs_only}", inline=True)
-                                   .add_field(name="**Players**", value=f"{players}/{lobby_player_limit}", inline=True)
-                                   .add_field(name=f"**Description:**", value=f"{lobby_description}", inline=False)
-                                   .add_field(name=f"Blue Team", value=f"{blue_team}", inline=True)
-                                   .add_field(name=f"Red Team", value=f"{red_team}", inline=True)
-                                   .add_field(name=f"Spectators", value=f"{spectators}")
-                                   .add_field(name=f"Sneaking Team", value=f"{sneaking_team}")
-                                   .add_field(name=f"Discord Contact:", value=f"{locked_host_comment}", inline=False)
+                                   .add_field(name=f"{map_title}:", value=f"{map_name}", inline=True)
+                                   .add_field(name=f"{mode_title}:", value=f"{game_mode}{drebin_points}{lobby_hs_only}", inline=True)
+                                   .add_field(name=f"**{players_title}**", value=f"{players}/{lobby_player_limit}", inline=True)
+                                   .add_field(name=f"**{description_title}:**", value=f"{lobby_description}", inline=False)
+                                   .add_field(name=f"{blue_team_title}", value=f"{blue_team}", inline=True)
+                                   .add_field(name=f"{red_team_title}", value=f"{red_team}", inline=True)
+                                   .add_field(name=f"{spectators_title}", value=f"{spectators}")
+                                   .add_field(name=f"{sneaking_team_title}", value=f"{sneaking_team}")
+                                   .add_field(name=f"{discord_contact_title}:", value=f"{locked_host_comment}", inline=False)
                                    .set_image(url=map_thumbnail))
 
         elif game_mode_no == 4:
@@ -299,14 +314,14 @@ def lobby_embed(all_lobby_data):
                                                  url=f"https://mgo2pc.com/game/{lobby_id}",
                                                  description=f"",
                                                  colour=0xfd3a3a)
-                                   .add_field(name=f"Map:", value=f"{map_name}", inline=True)
-                                   .add_field(name=f"Mode:", value=f"{game_mode}{drebin_points}{lobby_hs_only}", inline=True)
-                                   .add_field(name="**Players**", value=f"{players}/{lobby_player_limit}", inline=True)
-                                   .add_field(name=f"**Description:**", value=f"{lobby_description}", inline=False)
-                                   .add_field(name=f"Blue Team", value=f"{blue_team}", inline=True)
-                                   .add_field(name=f"Red Team", value=f"{red_team}", inline=True)
-                                   .add_field(name=f"Spectators", value=f"{spectators}")
-                                   .add_field(name=f"Sneaking Team", value=f"{sneaking_team}")
+                                   .add_field(name=f"{map_title}:", value=f"{map_name}", inline=True)
+                                   .add_field(name=f"{mode_title}:", value=f"{game_mode}{drebin_points}{lobby_hs_only}", inline=True)
+                                   .add_field(name=f"**{players_title}**", value=f"{players}/{lobby_player_limit}", inline=True)
+                                   .add_field(name=f"**{description_title}:**", value=f"{lobby_description}", inline=False)
+                                   .add_field(name=f"{blue_team_title}", value=f"{blue_team}", inline=True)
+                                   .add_field(name=f"{red_team_title}", value=f"{red_team}", inline=True)
+                                   .add_field(name=f"{spectators_title}", value=f"{spectators}")
+                                   .add_field(name=f"{sneaking_team_title}", value=f"{sneaking_team}")
                                    .set_image(url=map_thumbnail))
 
         else:
@@ -315,14 +330,14 @@ def lobby_embed(all_lobby_data):
                               url=f"https://mgo2pc.com/game/{lobby_id}",
                               description=f"",
                               colour=0xfd3a3a)
-                .add_field(name=f"Map:", value=f"{map_name}", inline=True)
-                .add_field(name=f"Mode:", value=f"{game_mode}{drebin_points}{lobby_hs_only}", inline=True)
-                .add_field(name=f"**Players**", value=f"{players}/{lobby_player_limit}", inline=True)
-                .add_field(name=f"**Description:**", value=f"{lobby_description}", inline=False)
-                .add_field(name=f"Your Instructor", value=f"{sneaking_team}", inline=False)
-                .add_field(name=f"Blue Team", value=f"{blue_team}", inline=True)
-                .add_field(name=f"Red Team", value=f"{red_team}", inline=True)
-                .add_field(name=f"Spectators", value=f"{spectators}")
+                .add_field(name=f"{map_title}:", value=f"{map_name}", inline=True)
+                .add_field(name=f"{mode_title}:", value=f"{game_mode}{drebin_points}{lobby_hs_only}", inline=True)
+                .add_field(name=f"**{players_title}**", value=f"{players}/{lobby_player_limit}", inline=True)
+                .add_field(name=f"**{description_title}:**", value=f"{lobby_description}", inline=False)
+                .add_field(name=f"{instructor_title}", value=f"{sneaking_team}", inline=False)
+                .add_field(name=f"{blue_team_title}", value=f"{blue_team}", inline=True)
+                .add_field(name=f"{red_team_title}", value=f"{red_team}", inline=True)
+                .add_field(name=f"{spectators_title}", value=f"{spectators}")
                 .set_image(url=map_thumbnail))
 
     return id_embeds
