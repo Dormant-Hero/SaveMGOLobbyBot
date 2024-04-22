@@ -186,18 +186,16 @@ def run():
                 lobby_embed_func_date = lobby_embed(all_lobby_data[guild_id], locale=locales[guild_id])
                 embed_list[guild_id] = lobby_embed_func_date[0]
                 kimi_hosting = lobby_embed_func_date[1]
-                print(f"Is Kimi hosting in savemgo.py? {kimi_hosting}")
                 lobby_id_size_sorted[guild_id] = lobby_embed_func_date[2]
                 if lobby_data_held[guild_id] != all_lobby_data[guild_id]:
                     await update_lobby_messages(guild_id, embed_list, msg_list, lobbies_channel, lobby_id_size_sorted,
                                                 lobby_ids_contained)
                     lobby_data_held[guild_id] = all_lobby_data[guild_id]
                     lobby_ids_contained[guild_id] = get_all_lobby_ids()
-                    print(f"Updated lobby_ids_contained: {lobby_ids_contained[guild_id]}")
                 else:
                     print("Lobby list matches")
 
-                print(f"The guild id is {guild_id} abd kimi hosting is {kimi_hosting} and count is {count}")
+                print(f"The guild id is {guild_id} and kimi hosting is {kimi_hosting} and count is {count}")
                 if str(guild_id) == "809840002989162516" and kimi_hosting and count == 0:
                     print(guild_id, kimi_hosting, count)
                     guild = bot.get_guild(809840002989162516)
@@ -241,7 +239,6 @@ def run():
                                     lobby_ids_contained):
         try:
             count = 0
-            print(1)
             for game_id in msg_list[guild_id]:
                 if len(msg_list[guild_id]) > len(lobby_id_size_sorted[guild_id]):
                     await msg_list[guild_id][-1].delete()

@@ -7,7 +7,6 @@ import json
 
 def lobby_embed(all_lobby_data, locale):
     id_embeds = {}
-    print(locale)
     # below is translating depending on the locale selected by the guild
     map_title = all_locales[locale]["map"]
     mode_title = all_locales[locale]["mode"]
@@ -136,9 +135,7 @@ def lobby_embed(all_lobby_data, locale):
                     hosts = json.load(f)
                 for host_name, host_comment in hosts.items():
                     if str(data["name"]) == host_name:
-                        print("this happened")
                         locked_host_comment = hosts[str(data["name"])]
-                        print(str(data["name"]))
                     elif locked_host_comment == "":
                         locked_host_comment = "This host is not on our database. Contact us if you have the information and we will try to add them to the bot."
             else:
@@ -356,6 +353,4 @@ def lobby_embed(all_lobby_data, locale):
                 .set_image(url=map_thumbnail))
     lobby_id_size_sorted = {k: v for k, v in sorted(room_size.items(), key=lambda item: item[1], reverse=True)}
     print(lobby_id_size_sorted)
-
-
     return id_embeds, kimi_hosting, lobby_id_size_sorted
