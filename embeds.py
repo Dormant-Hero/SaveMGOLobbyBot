@@ -205,7 +205,7 @@ def lobby_embed(all_lobby_data, locale):
 
         # below embed is if DM, SDM, INTERVAL, or SCAP is selected
         if game_mode_no in [0, 12, 13, 15] and lobby["locked"]:
-            if players < 6:
+            if players < 2:
                 id_embeds[lobby_id] = (discord.Embed(title=f":flag_{region.lower()}: {game_lock} {lobby_name}",
                                                      url=f"https://mgo2pc.com/game/{lobby_id}",
                                                      description="",
@@ -237,7 +237,7 @@ def lobby_embed(all_lobby_data, locale):
 
         elif game_mode_no in [0, 12, 13, 15]:
             if game_mode_no in [0, 12, 13, 15] and lobby["locked"]:
-                if players < 6:
+                if players < 2:
                     id_embeds[lobby_id] = (discord.Embed(title=f":flag_{region.lower()}: {game_lock} {lobby_name}",
                                                          url=f"https://mgo2pc.com/game/{lobby_id}",
                                                          description="",
@@ -255,7 +255,7 @@ def lobby_embed(all_lobby_data, locale):
                         url="https://cdn.discordapp.com/attachments/817184487061454928/1253382347165011988/bot_image.png?ex=6675a6c6&is=66745546&hm=dac248afd71e35657d85e05620e26b45988973831f8bc776fada97b077151530&")
                                            )
             else:
-                if players < 6:
+                if players < 2:
                     id_embeds[lobby_id] = (discord.Embed(title=f":flag_{region.lower()}: {game_lock} {lobby_name}",
                                                          url=f"https://mgo2pc.com/game/{lobby_id}",
                                                          description="",
@@ -288,7 +288,7 @@ def lobby_embed(all_lobby_data, locale):
         # below embed checks if team -1, sneaking_team, and assigning team has no data
         elif player_team_negative_1 == "" and sneaking_team == "" and assigning_team_1 == "" and assigning_team_2 == "" \
                 and lobby["locked"]:
-            if players < 6:
+            if players < 2:
                 id_embeds[lobby_id] = (discord.Embed(title=f":flag_{region.lower()}: {game_lock} {lobby_name}",
                                                      url=f"https://mgo2pc.com/game/{lobby_id}",
                                                      description="",
@@ -322,7 +322,7 @@ def lobby_embed(all_lobby_data, locale):
 
         # below embed checks if team -1, sneaking_team, and assigning team has no data
         elif player_team_negative_1 == "" and sneaking_team == "" and assigning_team_1 == "" and assigning_team_2 == "":
-            if players < 6:
+            if players < 2:
                 id_embeds[lobby_id] = (discord.Embed(title=f":flag_{region.lower()}: {game_lock} {lobby_name}",
                                                      url=f"https://mgo2pc.com/game/{lobby_id}",
                                                      description="",
@@ -354,7 +354,7 @@ def lobby_embed(all_lobby_data, locale):
 
         # if assigning team has a value then the below embed is produced
         elif assigning_team_1 != "" and lobby["locked"]:
-            if players < 6:
+            if players < 2:
                 id_embeds[lobby_id] = (discord.Embed(title=f":flag_{region.lower()}: {game_lock} {lobby_name}",
                                                      url=f"https://mgo2pc.com/game/{lobby_id}",
                                                      description="",
@@ -391,7 +391,7 @@ def lobby_embed(all_lobby_data, locale):
 
         # if assigning team has a value then the below embed is produced
         elif assigning_team_1 != "":
-            if players < 6:
+            if players < 2:
                 id_embeds[lobby_id] = (discord.Embed(title=f":flag_{region.lower()}: {game_lock} {lobby_name}",
                                                      url=f"https://mgo2pc.com/game/{lobby_id}",
                                                      description="",
@@ -427,7 +427,7 @@ def lobby_embed(all_lobby_data, locale):
 
 
         elif game_mode_no == 4 and lobby["locked"]:
-            if players < 6:
+            if players < 2:
                 id_embeds[lobby_id] = (discord.Embed(title=f":flag_{region.lower()}: {game_lock} {lobby_name}",
                                                      url=f"https://mgo2pc.com/game/{lobby_id}",
                                                      description="",
@@ -460,7 +460,7 @@ def lobby_embed(all_lobby_data, locale):
                                        .set_image(url=map_thumbnail))
 
         elif game_mode_no == 4:
-            if players < 6:
+            if players < 2:
                 id_embeds[lobby_id] = (discord.Embed(title=f":flag_{region.lower()}: {game_lock} {lobby_name}",
                                                      url=f"https://mgo2pc.com/game/{lobby_id}",
                                                      description="",
@@ -492,7 +492,7 @@ def lobby_embed(all_lobby_data, locale):
                                        .set_image(url=map_thumbnail))
 
         else:
-            if players < 6:
+            if players < 2:
                 id_embeds[lobby_id] = (discord.Embed(title=f":flag_{region.lower()}: {game_lock} {lobby_name}",
                                                      url=f"https://mgo2pc.com/game/{lobby_id}",
                                                      description="",
