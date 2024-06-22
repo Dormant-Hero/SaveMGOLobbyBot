@@ -249,47 +249,26 @@ def lobby_embed(all_lobby_data, locale):
                                        .set_image(url=map_thumbnail))
 
         elif game_mode_no in [0, 12, 13, 15]:
-            if game_mode_no in [0, 12, 13, 15] and lobby["locked"]:
-                if players < 2:
-                    compact_embed(id_embeds, lobby_id, region, game_lock, lobby_name, colour, map_title, map_name,
-                                  mode_title,
-                                  game_mode, drebin_points, lobby_hs_only, players_title, players, lobby_player_limit,
-                                  description_title, lobby_description, map_thumbnail)
-                else:
-                    id_embeds[lobby_id] = (discord.Embed(title=f":flag_{region.lower()}: {game_lock} {lobby_name}",
-                                                         url=f"https://mgo2pc.com/game/{lobby_id}",
-                                                         description=f"",
-                                                         colour=colour)
-                                           .add_field(name=f"{map_title}:", value=f"{map_name}", inline=True)
-                                           .add_field(name=f"{mode_title}:",
-                                                      value=f"{game_mode}{drebin_points}{lobby_hs_only}", inline=True)
-                                           .add_field(name=f"**{description_title}:**", value=f"{lobby_description}",
-                                                      inline=False)
-                                           .add_field(name=f"**{players_title}({players}/{lobby_player_limit})**",
-                                                      value=f"{player_info}",
-                                                      inline=True)
-                                           .add_field(name=f" ", value=f"{player_info2}", inline=True)
-                                           .set_image(url=map_thumbnail))
+            if players < 2:
+                compact_embed(id_embeds, lobby_id, region, game_lock, lobby_name, colour, map_title, map_name,
+                              mode_title,
+                              game_mode, drebin_points, lobby_hs_only, players_title, players, lobby_player_limit,
+                              description_title, lobby_description, map_thumbnail)
             else:
-                if players < 2:
-                    compact_embed(id_embeds, lobby_id, region, game_lock, lobby_name, colour, map_title, map_name,
-                                  mode_title,
-                                  game_mode, drebin_points, lobby_hs_only, players_title, players, lobby_player_limit,
-                                  description_title, lobby_description, map_thumbnail)
-                    id_embeds[lobby_id] = (discord.Embed(title=f":flag_{region.lower()}: {game_lock} {lobby_name}",
-                                                         url=f"https://mgo2pc.com/game/{lobby_id}",
-                                                         description=f"",
-                                                         colour=colour)
-                                           .add_field(name=f"{map_title}:", value=f"{map_name}", inline=True)
-                                           .add_field(name=f"{mode_title}:",
-                                                      value=f"{game_mode}{drebin_points}{lobby_hs_only}", inline=True)
-                                           .add_field(name=f"**{description_title}:**", value=f"{lobby_description}",
-                                                      inline=False)
-                                           .add_field(name=f"**{players_title}({players}/{lobby_player_limit})**",
-                                                      value=f"{player_info}",
-                                                      inline=True)
-                                           .add_field(name=f" ", value=f"{player_info2}", inline=True)
-                                           .set_image(url=map_thumbnail))
+                id_embeds[lobby_id] = (discord.Embed(title=f":flag_{region.lower()}: {game_lock} {lobby_name}",
+                                                     url=f"https://mgo2pc.com/game/{lobby_id}",
+                                                     description=f"",
+                                                     colour=colour)
+                                       .add_field(name=f"{map_title}:", value=f"{map_name}", inline=True)
+                                       .add_field(name=f"{mode_title}:",
+                                                  value=f"{game_mode}{drebin_points}{lobby_hs_only}", inline=True)
+                                       .add_field(name=f"**{description_title}:**", value=f"{lobby_description}",
+                                                  inline=False)
+                                       .add_field(name=f"**{players_title}({players}/{lobby_player_limit})**",
+                                                  value=f"{player_info}",
+                                                  inline=True)
+                                       .add_field(name=f" ", value=f"{player_info2}", inline=True)
+                                       .set_image(url=map_thumbnail))
 
         # below embed checks if team -1, sneaking_team, and assigning team has no data
         elif player_team_negative_1 == "" and sneaking_team == "" and assigning_team_1 == "" and assigning_team_2 == "" \
