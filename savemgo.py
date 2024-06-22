@@ -7,6 +7,7 @@ from datetime import timedelta
 import os
 from embeds import lobby_embed
 from api_data import get_lobby_Data, get_total_players, run_api_request, get_all_lobby_ids
+from icecream import ic
 
 bot_token = os.environ.get("TOKEN")
 
@@ -17,7 +18,8 @@ def check_guild_data_json():
             channel_ids = json.load(json_file_read)
         return channel_ids
     except Exception as e:
-        print(e)
+        ic()
+        ic(e)
         return {}
 
 
@@ -27,7 +29,8 @@ def check_locale_json():
             locale = json.load(json_file_read)
         return locale
     except Exception as e:
-        print(e)
+        ic()
+        ic(e)
         return {}
 
 
@@ -83,7 +86,8 @@ def run():
             else:
                 await interaction.response.send_message("You must be an administrator to use this command.")
         except Exception as e:
-            print(e)
+            ic()
+            ic(e)
 
     # Add a hosts contact information for when they host a password locked game
     @bot.tree.command(name="add_host")
@@ -128,7 +132,8 @@ def run():
             else:
                 await interaction.response.send_message("You must be an administrator to use this command.")
         except Exception as e:
-            print(e)
+            ic()
+            ic(e)
 
     # syncs the bot commands to Discord's servers. Set to owner only so it is not abused.
     @bot.command(name='sync', description='Owner only')
@@ -139,7 +144,8 @@ def run():
             else:
                 await ctx.send('You must be the owner of the bot to use this command!')
         except Exception as e:
-            print(e)
+            ic()
+            ic(e)
 
     # on ready functionality. Bot will produce lobby info and change channel names
     @bot.event
@@ -150,7 +156,8 @@ def run():
             on_ready_loop2 = [channel_name_change(guild_id) for guild_id, channel_id in channel_ids.items()]
             await asyncio.gather(*on_ready_loop1, *on_ready_loop2)
         except Exception as e:
-            print(e)
+            ic()
+            ic(e)
 
     # bot attempts to sync commands upon joining any discord guild
     @bot.event
@@ -158,7 +165,8 @@ def run():
         try:
             await bot.tree.sync(guild=guild)
         except Exception as e:
-            print(e)
+            ic()
+            ic(e)
 
     # when the bot boots purges the channel and runs the function for the MGO games embed messages
     async def on_ready_start(guild_id):
@@ -170,7 +178,8 @@ def run():
             await lobbies_channel.purge(limit=100)
             await start_bot_loop_on_ready(lobbies_channel, lobby_data_held, msg_list, lobby_ids_contained, guild_id)
         except Exception as e:
-            print(e)
+            ic()
+            ic(e)
 
     # Most of the mgo2 game embed code here
     async def start_bot_loop_on_ready(lobbies_channel, lobby_data_held, msg_list, lobby_ids_contained, guild_id):
@@ -215,8 +224,9 @@ def run():
                     count = 0
                 await asyncio.sleep(60)
         except Exception as e:
-            print(f"Error in start_bot_loop_on_ready for guild_id {guild_id}: {e}")
-            print(
+            ic()
+            ic(f"Error in start_bot_loop_on_ready for guild_id {guild_id}: {e}")
+            ic(
                 f"lobbies_channel{lobbies_channel}, lobby_data_held{lobby_data_held}, msg_list{msg_list}, lobby_ids_contained{lobby_ids_contained}, guild_id{guild_id}")
             if lobby_embed_func_date[1]:
                 await kimi_event.delete(reason="Kimidaki is no longer hosting")
@@ -251,7 +261,7 @@ def run():
                     msg = await lobbies_channel.send(embed=embed_list[guild_id][game_id])
                     msg_list[guild_id].append(msg)
         except Exception as e:
-            print(e)
+            ic(e)
 
     bot.run(bot_token)
 

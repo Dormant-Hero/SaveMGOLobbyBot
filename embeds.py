@@ -333,8 +333,8 @@ def lobby_embed(all_lobby_data, locale):
                                                      url=f"https://mgo2pc.com/game/{lobby_id}",
                                                      description=f"",
                                                      colour=colour)
-                                       .add_field(name=f"{invisible_space}Map:{invisible_space}",
-                                                  value=f"{invisible_space}{map_name}", inline=True)
+                                       .add_field(name=f"Map:",
+                                                  value=f"{map_name}", inline=True)
                                        .add_field(name=f"{mode_title}:",
                                                   value=f"{game_mode}{drebin_points}{lobby_hs_only}", inline=True)
                                        .add_field(name=f"**{description_title}:**", value=f"{lobby_description}",
@@ -364,8 +364,8 @@ def lobby_embed(all_lobby_data, locale):
                                                      url=f"https://mgo2pc.com/game/{lobby_id}",
                                                      description=f"",
                                                      colour=colour)
-                                       .add_field(name=f"{invisible_space}Map:{invisible_space}",
-                                                  value=f"{invisible_space}{map_name}", inline=True)
+                                       .add_field(name=f"Map:",
+                                                  value=f"{map_name}", inline=True)
                                        .add_field(name=f"{mode_title}:",
                                                   value=f"{game_mode}{drebin_points}{lobby_hs_only}", inline=True)
                                        .add_field(name=f"**{players_title}**", value=f"{players}/{lobby_player_limit}",
