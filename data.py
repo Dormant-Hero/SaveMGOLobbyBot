@@ -19,9 +19,12 @@ map_choices = {
     17: ["DD", "https://media.discordapp.net/attachments/817184487061454928/1182774564070113280/DD.jpg?ex=6585eba6&is=657376a6&hm=9d095a45abdd8c071b081d86fe1da4d4dcbac43b5eb5e162300c99a060e6116d&=&format=webp"],
     18: ["LL", "https://media.discordapp.net/attachments/817184487061454928/1182774565290651749/LL.jpg?ex=6585eba7&is=657376a7&hm=31017a1aee3d2089e0f53dad47c846fc67ccb2b3a9a88f87b4453d98365f6ea6&=&format=webp"],
     19: ["PP", "https://media.discordapp.net/attachments/817184487061454928/1182774540007374929/PP.jpg?ex=6585eba1&is=657376a1&hm=dae9a7a09c370f38b2bcb7455d1adb234e1c17627c05ae30385d3de114ab28ff&=&format=webp"],
-    20: ["QQ", "https://media.discordapp.net/attachments/817184487061454928/1182774539734765629/Q.jpg?ex=6585eba1&is=657376a1&hm=3c289725d6142efd61b00200111f82d72c081ea1a2cd3eceed314c587fb440dd&=&format=webp"],
+    20: ["QQ", "https://media.discordapp.net/attachments/817184487061454928/1255988095900323851/20.jpg?ex=667f2191&is=667dd011&hm=4c23cb6a6d2785a11f0df6285c267c78fd390c34a335199719f320fdc2267174&=&format=webp"],
     21: ["JJ", "https://media.discordapp.net/attachments/817184487061454928/1182774565626200185/JJ.jpg?ex=6585eba7&is=657376a7&hm=97b901866166a52fbeea7d60907b2a6ab9fff5967a00b878281938e9d1a3367c&=&format=webp"],
-    22: ["Unknown Map", "https://mgo2pc.com/games"]  # Set this up for when an unknown map appears in the api
+    22: ["Unknown Map", "https://mgo2pc.com/games"],  # Set this up for when an unknown map appears in the api,
+    23: ["FF (Night)", "https://images-ext-1.discordapp.net/external/9YZrK2ASiIHnMI4Thyq95lslIAOIvN_38TNgAHm9WKg/https/mgo2pc.com/static/1_1.4d013fb2.jpg?format=webp"],
+    24: ["QQ (Night)", "https://media.discordapp.net/attachments/817184487061454928/1255988095900323851/20.jpg?ex=667f2191&is=667dd011&hm=4c23cb6a6d2785a11f0df6285c267c78fd390c34a335199719f320fdc2267174&=&format=webp"],
+    25: ["II (No Blizzard)", "https://media.discordapp.net/attachments/817184487061454928/1182776276478607442/II.jpg?ex=6585ed3f&is=6573783f&hm=063bf342f134d6bcb80f9b669825b6bdfe9192fd5a48f4c5d8e0e3cddd8ce121&=&format=webp"]
 }
 
 # All the possible modes that can be produced from the API the bot connects to
@@ -113,7 +116,7 @@ dp = {
     2: "<:dp:1180861589289701466>",
     3: " Message Marko aka dormant hero as something unexpected occured",
     4: "<:hsonly:1181375450602287145>",
-    32: " (Alternative map)"
+    32: "(Alternative map)"
 }
 
 host = "<:host:1180901051545702411>"
