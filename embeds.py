@@ -7,12 +7,12 @@ import json
 
 def compact_embed(id_embeds, lobby_id, region, game_lock, lobby_name, colour, map_title, map_name, mode_title,
                   game_mode, drebin_points, lobby_hs_only, players_title, players, lobby_player_limit,
-                  description_title, lobby_description, map_thumbnail):
+                  description_title, lobby_description, map_thumbnail, alt_map):
     id_embeds[lobby_id] = (discord.Embed(title=f":flag_{region.lower()}: {game_lock} {lobby_name}",
                                          url=f"https://mgo2pc.com/game/{lobby_id}",
                                          description="",
                                          colour=colour)
-    .add_field(name=f"{map_title}:", value=f"{map_name}", inline=True)
+    .add_field(name=f"{map_title}:", value=f"{map_name} {alt_map}", inline=True)
     .add_field(name=f"{mode_title}:",
                value=f"{game_mode}{drebin_points}{lobby_hs_only}", inline=True)
     .add_field(name=f"**{players_title}**",
@@ -49,12 +49,16 @@ def lobby_embed(all_lobby_data, locale):
         map_no = lobby["games"][current_game][1]
         drebin_points = lobby["games"][current_game][2]  # drebin points
         lobby_hs_only = ""
-        if drebin_points != 2 and drebin_points != 0 and drebin_points != 4:
+        alt_map = ""
+        if drebin_points != 2 and drebin_points != 0 and drebin_points != 4 and drebin_points != 32:
             drebin_points = dp[3]
         elif drebin_points == 2:
             drebin_points = dp[2]
         elif drebin_points == 4:
             drebin_points = dp[4]
+        elif drebin_points == 32:
+            alt_map = dp[32]
+            drebin_points = ""
         else:
             drebin_points = dp[0]
         if map_no not in map_choices:
@@ -229,13 +233,13 @@ def lobby_embed(all_lobby_data, locale):
                 compact_embed(id_embeds, lobby_id, region, game_lock, lobby_name, colour, map_title, map_name,
                               mode_title,
                               game_mode, drebin_points, lobby_hs_only, players_title, players, lobby_player_limit,
-                              description_title, lobby_description, map_thumbnail)
+                              description_title, lobby_description, map_thumbnail, alt_map)
             else:
                 id_embeds[lobby_id] = (discord.Embed(title=f":flag_{region.lower()}: {game_lock} {lobby_name}",
                                                      url=f"https://mgo2pc.com/game/{lobby_id}",
                                                      description="",
                                                      colour=colour)
-                                       .add_field(name=f"{map_title}:", value=f"{map_name}", inline=True)
+                                       .add_field(name=f"{map_title}:", value=f"{map_name} {alt_map}", inline=True)
                                        .add_field(name=f"{mode_title}:",
                                                   value=f"{game_mode}{drebin_points}{lobby_hs_only}", inline=True)
                                        .add_field(name=f"**{description_title}:**", value=f"{lobby_description}",
@@ -253,13 +257,13 @@ def lobby_embed(all_lobby_data, locale):
                 compact_embed(id_embeds, lobby_id, region, game_lock, lobby_name, colour, map_title, map_name,
                               mode_title,
                               game_mode, drebin_points, lobby_hs_only, players_title, players, lobby_player_limit,
-                              description_title, lobby_description, map_thumbnail)
+                              description_title, lobby_description, map_thumbnail, alt_map)
             else:
                 id_embeds[lobby_id] = (discord.Embed(title=f":flag_{region.lower()}: {game_lock} {lobby_name}",
                                                      url=f"https://mgo2pc.com/game/{lobby_id}",
                                                      description=f"",
                                                      colour=colour)
-                                       .add_field(name=f"{map_title}:", value=f"{map_name}", inline=True)
+                                       .add_field(name=f"{map_title}:", value=f"{map_name} {alt_map}", inline=True)
                                        .add_field(name=f"{mode_title}:",
                                                   value=f"{game_mode}{drebin_points}{lobby_hs_only}", inline=True)
                                        .add_field(name=f"**{description_title}:**", value=f"{lobby_description}",
@@ -277,13 +281,13 @@ def lobby_embed(all_lobby_data, locale):
                 compact_embed(id_embeds, lobby_id, region, game_lock, lobby_name, colour, map_title, map_name,
                               mode_title,
                               game_mode, drebin_points, lobby_hs_only, players_title, players, lobby_player_limit,
-                              description_title, lobby_description, map_thumbnail)
+                              description_title, lobby_description, map_thumbnail, alt_map)
             else:
                 id_embeds[lobby_id] = (discord.Embed(title=f":flag_{region.lower()}: {game_lock} {lobby_name}",
                                                      url=f"https://mgo2pc.com/game/{lobby_id}",
                                                      description=f"",
                                                      colour=colour)
-                                       .add_field(name=f"{map_title}:", value=f"{map_name}", inline=True)
+                                       .add_field(name=f"{map_title}:", value=f"{map_name} {alt_map}", inline=True)
                                        .add_field(name=f"{mode_title}:",
                                                   value=f"{game_mode}{drebin_points}{lobby_hs_only}", inline=True)
                                        .add_field(name=f"**{players_title}**", value=f"{players}/{lobby_player_limit}",
@@ -303,13 +307,13 @@ def lobby_embed(all_lobby_data, locale):
                 compact_embed(id_embeds, lobby_id, region, game_lock, lobby_name, colour, map_title, map_name,
                               mode_title,
                               game_mode, drebin_points, lobby_hs_only, players_title, players, lobby_player_limit,
-                              description_title, lobby_description, map_thumbnail)
+                              description_title, lobby_description, map_thumbnail, alt_map)
             else:
                 id_embeds[lobby_id] = (discord.Embed(title=f":flag_{region.lower()}: {game_lock} {lobby_name}",
                                                      url=f"https://mgo2pc.com/game/{lobby_id}",
                                                      description=f"",
                                                      colour=colour)
-                                       .add_field(name=f"{map_title}:", value=f"{map_name}", inline=True)
+                                       .add_field(name=f"{map_title}:", value=f"{map_name} {alt_map}", inline=True)
                                        .add_field(name=f"{mode_title}:",
                                                   value=f"{game_mode}{drebin_points}{lobby_hs_only}", inline=True)
                                        .add_field(name=f"**{players_title}**", value=f"{players}/{lobby_player_limit}",
@@ -327,14 +331,14 @@ def lobby_embed(all_lobby_data, locale):
                 compact_embed(id_embeds, lobby_id, region, game_lock, lobby_name, colour, map_title, map_name,
                               mode_title,
                               game_mode, drebin_points, lobby_hs_only, players_title, players, lobby_player_limit,
-                              description_title, lobby_description, map_thumbnail)
+                              description_title, lobby_description, map_thumbnail, alt_map)
             else:
                 id_embeds[lobby_id] = (discord.Embed(title=f":flag_{region.lower()}: {game_lock} {lobby_name}",
                                                      url=f"https://mgo2pc.com/game/{lobby_id}",
                                                      description=f"",
                                                      colour=colour)
                                        .add_field(name=f"Map:",
-                                                  value=f"{map_name}", inline=True)
+                                                  value=f"{map_name} {alt_map}", inline=True)
                                        .add_field(name=f"{mode_title}:",
                                                   value=f"{game_mode}{drebin_points}{lobby_hs_only}", inline=True)
                                        .add_field(name=f"**{description_title}:**", value=f"{lobby_description}",
@@ -358,14 +362,14 @@ def lobby_embed(all_lobby_data, locale):
                 compact_embed(id_embeds, lobby_id, region, game_lock, lobby_name, colour, map_title, map_name,
                               mode_title,
                               game_mode, drebin_points, lobby_hs_only, players_title, players, lobby_player_limit,
-                              description_title, lobby_description, map_thumbnail)
+                              description_title, lobby_description, map_thumbnail, alt_map)
             else:
                 id_embeds[lobby_id] = (discord.Embed(title=f":flag_{region.lower()}: {game_lock} {lobby_name}",
                                                      url=f"https://mgo2pc.com/game/{lobby_id}",
                                                      description=f"",
                                                      colour=colour)
-                                       .add_field(name=f"Map:",
-                                                  value=f"{map_name}", inline=True)
+                                       .add_field(name=f"{map_title}",
+                                                  value=f"{map_name} {alt_map}", inline=True)
                                        .add_field(name=f"{mode_title}:",
                                                   value=f"{game_mode}{drebin_points}{lobby_hs_only}", inline=True)
                                        .add_field(name=f"**{players_title}**", value=f"{players}/{lobby_player_limit}",
@@ -387,13 +391,13 @@ def lobby_embed(all_lobby_data, locale):
                 compact_embed(id_embeds, lobby_id, region, game_lock, lobby_name, colour, map_title, map_name,
                               mode_title,
                               game_mode, drebin_points, lobby_hs_only, players_title, players, lobby_player_limit,
-                              description_title, lobby_description, map_thumbnail)
+                              description_title, lobby_description, map_thumbnail, alt_map)
             else:
                 id_embeds[lobby_id] = (discord.Embed(title=f":flag_{region.lower()}: {game_lock} {lobby_name}",
                                                      url=f"https://mgo2pc.com/game/{lobby_id}",
                                                      description=f"",
                                                      colour=colour)
-                                       .add_field(name=f"{map_title}:", value=f"{map_name}", inline=True)
+                                       .add_field(name=f"{map_title}:", value=f"{map_name} {alt_map}", inline=True)
                                        .add_field(name=f"{mode_title}:",
                                                   value=f"{game_mode}{drebin_points}{lobby_hs_only}", inline=True)
                                        .add_field(name=f"**{players_title}**", value=f"{players}/{lobby_player_limit}",
@@ -413,13 +417,13 @@ def lobby_embed(all_lobby_data, locale):
                 compact_embed(id_embeds, lobby_id, region, game_lock, lobby_name, colour, map_title, map_name,
                               mode_title,
                               game_mode, drebin_points, lobby_hs_only, players_title, players, lobby_player_limit,
-                              description_title, lobby_description, map_thumbnail)
+                              description_title, lobby_description, map_thumbnail, alt_map)
             else:
                 id_embeds[lobby_id] = (discord.Embed(title=f":flag_{region.lower()}: {game_lock} {lobby_name}",
                                                      url=f"https://mgo2pc.com/game/{lobby_id}",
                                                      description=f"",
                                                      colour=colour)
-                                       .add_field(name=f"{map_title}:", value=f"{map_name}", inline=True)
+                                       .add_field(name=f"{map_title}:", value=f"{map_name} {alt_map}", inline=True)
                                        .add_field(name=f"{mode_title}:",
                                                   value=f"{game_mode}{drebin_points}{lobby_hs_only}", inline=True)
                                        .add_field(name=f"**{players_title}**", value=f"{players}/{lobby_player_limit}",
@@ -437,14 +441,14 @@ def lobby_embed(all_lobby_data, locale):
                 compact_embed(id_embeds, lobby_id, region, game_lock, lobby_name, colour, map_title, map_name,
                               mode_title,
                               game_mode, drebin_points, lobby_hs_only, players_title, players, lobby_player_limit,
-                              description_title, lobby_description, map_thumbnail)
+                              description_title, lobby_description, map_thumbnail, alt_map)
             else:
                 id_embeds[lobby_id] = (
                     discord.Embed(title=f"{invisible_space}:flag_{region.lower()}: {game_lock} {lobby_name}",
                                   url=f"https://mgo2pc.com/game/{lobby_id}",
                                   description=f"",
                                   colour=colour)
-                    .add_field(name=f"{map_title}:", value=f"{map_name}", inline=True)
+                    .add_field(name=f"{map_title}:", value=f"{map_name} {alt_map}", inline=True)
                     .add_field(name=f"{mode_title}:", value=f"{game_mode}{drebin_points}{lobby_hs_only}", inline=True)
                     .add_field(name=f"**{players_title}**", value=f"{players}/{lobby_player_limit}", inline=True)
                     .add_field(name=f"**{description_title}:**", value=f"{lobby_description}", inline=False)

@@ -111,8 +111,9 @@ password_emoji = {
 dp = {
     0: "",
     2: "<:dp:1180861589289701466>",
-    3: "something unexpected. Take a screenshot and please inform me (Dormant Hero).",
-    4: "<:hsonly:1181375450602287145>"
+    3: " Message Marko aka dormant hero as something unexpected occured",
+    4: "<:hsonly:1181375450602287145>",
+    32: " (Alternative map)"
 }
 
 host = "<:host:1180901051545702411>"
