@@ -66,7 +66,7 @@ def lobby_embed(all_lobby_data, locale):
         if map_no == 1 and alt_map:
             map_no = 23
         if map_no == 20 and alt_map:
-            map_no = 20
+            map_no = 24
         if map_no == 11 and alt_map:
             map_no = 25
         if lobby["lobbyId"] == 15:
