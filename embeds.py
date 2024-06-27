@@ -50,7 +50,7 @@ def lobby_embed(all_lobby_data, locale):
         drebin_points = lobby["games"][current_game][2]  # drebin points
         lobby_hs_only = ""
         alt_map = ""
-        if drebin_points != 2 and drebin_points != 0 and drebin_points != 4 and drebin_points != 32:
+        if drebin_points != 2 and drebin_points != 0 and drebin_points != 4 and drebin_points != 32 and drebin_points != 34:
             drebin_points = dp[3]
         elif drebin_points == 2:
             drebin_points = dp[2]
@@ -59,6 +59,9 @@ def lobby_embed(all_lobby_data, locale):
         elif drebin_points == 32:
             alt_map = dp[32]
             drebin_points = ""
+        elif drebin_points == 34:
+            alt_map = dp[34]
+            drebin_points = dp[2]
         else:
             drebin_points = dp[0]
         if map_no not in map_choices:

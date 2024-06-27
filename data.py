@@ -116,7 +116,8 @@ dp = {
     2: "<:dp:1180861589289701466>",
     3: " Message Marko aka dormant hero as something unexpected occured",
     4: "<:hsonly:1181375450602287145>",
-    32: "(Alternative map)"
+    32: "(Alternative map)",
+    34: "(Alternative Map)"
 }
 
 host = "<:host:1180901051545702411>"
