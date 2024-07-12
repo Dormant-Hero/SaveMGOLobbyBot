@@ -4,15 +4,21 @@ from discord.ext import commands
 from discord import app_commands
 import json
 from datetime import timedelta
+import datetime
 import os
 from embeds import lobby_embed
 from api_data import get_lobby_Data, get_total_players, run_api_request, get_all_lobby_ids
 from icecream import ic
+import subprocess
+import sys
+#note the below is pip install python-dotenv to get this one installed!
+from dotenv import load_dotenv
 
+load_dotenv()
 bot_token = os.environ.get("TOKEN")
 
 
-def check_guild_data_json():
+def return_chan_id_from_json():
     try:
         with open("guild_data.json") as json_file_read:
             channel_ids = json.load(json_file_read)
@@ -23,7 +29,7 @@ def check_guild_data_json():
         return {}
 
 
-def check_locale_json():
+def return_discord_server_locale():
     try:
         with open("guilds_locale.json") as json_file_read:
             locale = json.load(json_file_read)
@@ -34,14 +40,17 @@ def check_locale_json():
         return {}
 
 
-locales = check_locale_json()
+locales = return_discord_server_locale()
+
+def restart_bot():
+    os.execv(sys.executable, [sys.executable] + sys.argv)
 
 
 def run():
     intents = discord.Intents.default()
     intents.message_content = True
     bot = commands.Bot(command_prefix="*", intents=intents)
-    channel_ids = check_guild_data_json()
+    channel_ids = return_chan_id_from_json()
 
     # Sets the channel id you want the bot to produce MGO2 lobby information in then runs accordingly.
     @bot.tree.command(name="set_channel_id")
@@ -79,10 +88,10 @@ def run():
                     with open("guilds_locale.json", "w") as json_file_modify:
                         json.dump(locale_selection, json_file_modify, indent=6)
                         json_file_modify.close()
-                    locales = check_locale_json()
+                    locales = return_discord_server_locale()
                     await lobbies_channel.purge(limit=100)
                     await start_bot_loop_on_ready(lobbies_channel, lobby_data_held, msg_list, lobby_ids_contained,
-                                                  guild_id)
+                                                guild_id)
             else:
                 await interaction.response.send_message("You must be an administrator to use this command.")
         except Exception as e:
@@ -92,18 +101,19 @@ def run():
     # Add a hosts contact information for when they host a password locked game
     @bot.tree.command(name="add_host")
     @app_commands.describe(host_name="Input host character name for when a lobby is locked.",
-                           discord_contact="Input how to contact this host"
-                           )
-    async def add_host(interaction: discord.Interaction, host_name: str, discord_contact: str):
-        if interaction.guild_id == 809840002989162516:  # checks if SaveMGO discord guild as command meant for staff
+                        discord_contact="Input how to contact this host"
+                        )
+    async def add_to_hosts_json(interaction: discord.Interaction, host_name: str, discord_contact: str):
+        # checks if SaveMGO discord guild as command should only be used there
+        if interaction.guild_id == 809840002989162516:
             user_role_ids = [role.id for role in interaction.user.roles]
             if (
                     interaction.user.guild_permissions.administrator or 809858802278989884 in user_role_ids or 810647505896210482 in user_role_ids):
-                with open("hosts.json", "r") as f:
-                    hosts = json.load(f)
+                with open("hosts.json", "r") as locked_host_list:
+                    hosts = json.load(locked_host_list)
                 hosts[host_name] = discord_contact
-                with open("hosts.json", "w") as f:
-                    json.dump(hosts, f, indent=6)
+                with open("hosts.json", "w") as locked_host_list:
+                    json.dump(hosts, locked_host_list, indent=6)
                 await interaction.response.send_message(f"Host information for {host_name} has been added")
             else:
                 await interaction.response.send_message(f"You do not have the necessary role to use this command")
@@ -127,7 +137,7 @@ def run():
                 locale_selection[guild_id] = languages.value
                 with open("guilds_locale.json", "w") as json_file_modify:
                     json.dump(locale_selection, json_file_modify, indent=6)
-                locales = check_locale_json()
+                locales = return_discord_server_locale()
                 await interaction.response.send_message(f"Selected {languages.name} locale.")
             else:
                 await interaction.response.send_message("You must be an administrator to use this command.")
@@ -151,7 +161,7 @@ def run():
     @bot.event
     async def on_ready():
         try:
-            channel_ids = check_guild_data_json()
+            channel_ids = return_chan_id_from_json()
             on_ready_loop1 = [on_ready_start(guild_id) for guild_id, channel_id in channel_ids.items()]
             on_ready_loop2 = [channel_name_change(guild_id) for guild_id, channel_id in channel_ids.items()]
             await asyncio.gather(*on_ready_loop1, *on_ready_loop2)
@@ -190,6 +200,11 @@ def run():
             count = 0
             kimi_event = ""
             while True:
+                now = datetime.datetime.now()
+                if int(now.minute) == 50:
+                    print(f"minute now {now.minute} and second is {now.second}")
+                    await asyncio.sleep(60)
+                    restart_bot()
                 run_api_request()
                 all_lobby_data = {guild_id: get_lobby_Data()}
                 lobby_embed_func_date = lobby_embed(all_lobby_data[guild_id], locale=locales[guild_id])
@@ -225,7 +240,7 @@ def run():
                 await asyncio.sleep(60)
         except Exception as e:
             ic()
-            ic(f"Error in start_bot_loop_on_ready for guild_id {guild_id}: {e}")
+            ic(f"Line 238Error in start_bot_loop_on_ready for guild_id {guild_id}: {e}")
             ic(
                 f"lobbies_channel{lobbies_channel}, lobby_data_held{lobby_data_held}, msg_list{msg_list}, lobby_ids_contained{lobby_ids_contained}, guild_id{guild_id}")
             if lobby_embed_func_date[1]:
@@ -242,17 +257,16 @@ def run():
                 await lobbies_channel.edit(name=f"🌐mgo2-lobbies【{total_players}】")
                 await asyncio.sleep(601)
         except Exception as e:
-            print(f"Error in channel_name_change for guild_id {guild_id}: {e}")
+            print(f"Line 255 Error in channel_name_change for guild_id {guild_id}: {e}")
 
     # Handles the embed posting/updating process
     async def update_lobby_messages(guild_id, embed_list, msg_list, lobbies_channel, lobby_id_size_sorted,
                                     lobby_ids_contained):
         try:
             count = 0
-            for game_id in msg_list[guild_id]:
-                if len(msg_list[guild_id]) > len(lobby_id_size_sorted[guild_id]):
-                    await msg_list[guild_id][-1].delete()
-                    del msg_list[guild_id][-1]
+            while len(msg_list[guild_id]) > len(lobby_id_size_sorted[guild_id]):
+                await msg_list[guild_id][-1].delete()
+                del msg_list[guild_id][-1]
             for game_id in list(lobby_id_size_sorted[guild_id]):
                 if game_id in list(lobby_ids_contained[guild_id]):
                     await msg_list[guild_id][count].edit(embed=embed_list[guild_id][game_id])
@@ -261,9 +275,12 @@ def run():
                     msg = await lobbies_channel.send(embed=embed_list[guild_id][game_id])
                     msg_list[guild_id].append(msg)
         except Exception as e:
+            ic()
             ic(e)
 
     bot.run(bot_token)
+
+
 
 
 if __name__ == "__main__":
