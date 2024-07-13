@@ -22,8 +22,8 @@ map_choices = {
     20: ["QQ", "https://media.discordapp.net/attachments/817184487061454928/1255988095900323851/20.jpg?ex=667f2191&is=667dd011&hm=4c23cb6a6d2785a11f0df6285c267c78fd390c34a335199719f320fdc2267174&=&format=webp"],
     21: ["JJ", "https://media.discordapp.net/attachments/817184487061454928/1182774565626200185/JJ.jpg?ex=6585eba7&is=657376a7&hm=97b901866166a52fbeea7d60907b2a6ab9fff5967a00b878281938e9d1a3367c&=&format=webp"],
     22: ["Unknown Map", "https://mgo2pc.com/games"],  # Set this up for when an unknown map appears in the api,
-    23: ["FF (Night)", "https://images-ext-1.discordapp.net/external/9YZrK2ASiIHnMI4Thyq95lslIAOIvN_38TNgAHm9WKg/https/mgo2pc.com/static/1_1.4d013fb2.jpg?format=webp"],
-    24: ["QQ (Night)", "https://images-ext-1.discordapp.net/external/H0eNfPFsWNL5m3e9ufOAj9gqG9K480fwLaRti2JS2TU/https/mgo2pc.com/static/20_1.c0ba905a.jpg?format=webp"],
+    23: ["FF (Night)", "https://cdn.discordapp.com/attachments/829865733474484316/1261365175567519806/1_1.4d013fb2_1.webp?ex=66935a1c&is=6692089c&hm=4e78042d692e27451a253a65d3f3ca48e5af07447ed1c81a4543a7e42b44b03c&"],
+    24: ["QQ (Night)", "https://cdn.discordapp.com/attachments/829865733474484316/1261365962486054983/20_1.c0ba905a.jpg?ex=66935ad8&is=66920958&hm=9d86a38236eec660e2d6044a35208e52837112057fd70ee9561f5b5d7a3e16fc&"],
     25: ["II (No Blizzard)", "https://media.discordapp.net/attachments/817184487061454928/1182776276478607442/II.jpg?ex=6585ed3f&is=6573783f&hm=063bf342f134d6bcb80f9b669825b6bdfe9192fd5a48f4c5d8e0e3cddd8ce121&=&format=webp"]
 }
 
