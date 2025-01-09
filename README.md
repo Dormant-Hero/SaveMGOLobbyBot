@@ -1,7 +1,9 @@
 
 # ![logo 4185b845](https://github.com/Dormant-Hero/SaveMGOLobbyBot/assets/79374258/11f754cb-aa63-4e83-adc5-6d780e334e11)
 
-This bot provides a live feed into a discord channel of all the games being played in SaveMGO2/Metal Gear Online 2 (the online component to MGS4). It is a **work in progress** as a result it currently does not have error handling.
+Note: The code is old but could still be used. Since I have moved to Postgress databases and created many more bots that work together. It has some backend api's etc I don't want to share. My bot is still shared with other servers though and can be added accordingly.
+
+This bot provides a near to live feed into a discord channel of all the games being played in SaveMGO2/Metal Gear Online 2 (the online component to MGS4). It is a **work in progress** as a result it currently does not have error handling.
 
 <br>
 
